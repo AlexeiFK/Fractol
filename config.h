@@ -4,8 +4,8 @@
 # define CONFIG_H
 
 # define W_NAME "Fractol42"
-# define WINDOW_HEIGTH 600
-# define WINDOW_WIDTH 800
+# define WINDOW_HEIGTH 800
+# define WINDOW_WIDTH 1000
 # define WINDOW_H_C WINDOW_HEIGTH/2
 # define WINDOW_W_C WINDOW_WIDTH/2
 # define SENS_HOR 100
@@ -27,5 +27,9 @@
 # define VKEY 118
 # define BKEY 98
 # define CKEY 8
+# define ARROW_U 65362
+# define ARROW_D 65364
+# define ARROW_R 65363
+# define ARROW_L 65361
 
 #endif

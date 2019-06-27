@@ -1,7 +1,7 @@
 
 
 #include <stdlib.h>
-//#include "libft.h"
+#include "libft.h"
 #include "fractol.h"
 #include "mlx.h"
 
@@ -15,18 +15,21 @@ static void	mlx_setup(t_param *param)
 	param->img_ptr = mlx_new_image(param->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGTH);
 	param->start_x = WINDOW_W_C;
 	param->start_y = WINDOW_H_C;
+	param->j_start_x = WINDOW_W_C;
+	param->j_start_y = WINDOW_H_C;
 	param->pres = 255;
 	param->k = 100;
 	param->k1 = 1;
 	param->k2 = 1;
 	param->k3 = 1;
-	param->mult = -300;
+	param->mult = -100.0;
+	param->j_mult = -100.0;
 	param->s = mlx_get_data_addr(param->img_ptr, &bits, &(param->size), &endian);
 }
 
 static void	usage_msg(void)
 {
-//	ft_putstr("usage: \n");
+	ft_putstr("usage: Mand, Julia, etc\n");
 	exit(0);
 }
 
@@ -34,10 +37,23 @@ int		main(int argc, char **argv)
 {
 	t_param 	param;
 
-	mlx_setup(&param);
-	mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
-	mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
-//	mlx_loop_hook(param.mlx_ptr, hook_f, (void*)(&param));
+	if (argc != 2)
+		usage_msg();
+	if (ft_strcmp(argv[1], "Mand") == 0)
+	{
+		mlx_setup(&param);
+		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
+		print(&param, 1, WINDOW_W_C, WINDOW_H_C);
+	}
+	else if (ft_strcmp(argv[1], "Julia") == 0)
+	{
+		mlx_setup(&param);
+		mlx_key_hook(param.win_ptr, keyboard_fj, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_fj, (void*)(&param));
+	}
+	else
+		usage_msg();
 	mlx_loop(param.mlx_ptr);
 	return (0);
 }
