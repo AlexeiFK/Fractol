@@ -22,64 +22,6 @@ void	x_y_convert(t_param *param, long double xd, long double yd) //long double *
 	printf("x = %.50Lf, y = %.50Lf, mult = %Le\n", new_x, new_y, param->mult);
 }
 
-
-void	set_colors(t_param *param, int i, int i_max, t_spec *spec)
-{
-	spec->r = (i * param->k * param->k1) % 255;
-	spec->g = (i * param->k * param->k2) % 255;
-	spec->b = (i * param->k * param->k3) % 255;
-}
-
-void	set_color(t_param *param, int i, int i_max, t_spec *spec)
-{
-	int	k1;
-	int	k2;
-	int	k3;
-
-	k1 = 0;
-	k2 = 0;
-	k3 = 0;
-	if (i % 8 == 0)
-		k1 = 1;
-	else if (i % 8 == 1)
-		k2 = 1;
-	else if (i % 8 == 2)
-		k3 = 1;
-	else if (i % 8 == 3)
-	{
-		k1 = 1;
-		k2 = 1;
-	}
-	else if (i % 8 == 4)
-	{
-		k1 = 1;
-		k2 = 1;
-		k3 = 1;
-	}
-	else if (i % 8 == 5)
-	{
-		k2 = 1;
-		k3 = 1;
-	}
-	else if (i % 8 == 6)
-	{
-		k1 = 1;
-		k3 = 1;
-	}
-	else if (i % 8 == 7)
-		k2 = 0;
-	spec->r = i * k1 * param->k1;
-	spec->g = i * k2 * param->k2;
-	spec->b = i * k3 * param->k3;
-	if (i == i_max)
-	{
-		spec->r = 255;
-		spec->g = 255;
-		spec->b = 255;
-	}
-}
-
-
 int	to_iterate(long double c_x, long double c_y, int i, int i_max)
 {
 	long double	x;	
@@ -117,34 +59,10 @@ void	check_pixel(t_param *param, long double xd, long double yd, int i_max) //lo
 	c_y = (yd - (param->start_y)) / param->mult;
 	i = 0;
 	i = to_iterate(c_x, c_y, i, i_max);
-	set_color(param, i, i_max, &spec);
-	ch_pixel_put(param, xd, yd, &spec);
+	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-void	*trd_func_odd(void *p)
-{
-	int		x;
-	int		y;
-	int		pres;
-	t_param		*param;
-
-	param = (t_param*)p;
-	pres = param->pres;
-	x = 1;
-	while (x < WINDOW_WIDTH)
-	{
-		y = 0;
-		while (y < WINDOW_HEIGTH)
-		{
-			check_pixel(param, x, y, pres);
-			y += 1;
-		}
-		x += 2;
-	}
-	return (NULL);
-}
-
-void	*trd_func_even(void *p)
+void	*trd_func_1(void *p)
 {
 	int		x;
 	int		y;
@@ -162,24 +80,97 @@ void	*trd_func_even(void *p)
 			check_pixel(param, x, y, pres);
 			y += 1;
 		}
-		x += 2;
+		x += 4;
 	}
 	return (NULL);
 }
 
-void	m_mald(t_param *param)
+void	*trd_func_2(void *p)
 {
 	int		x;
 	int		y;
 	int		pres;
+	t_param		*param;
+
+	param = (t_param*)p;
+	pres = param->pres;
+	x = 1;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel(param, x, y, pres);
+			y += 1;
+		}
+		x += 4;
+	}
+	return (NULL);
+}
+
+void	*trd_func_3(void *p)
+{
+	int		x;
+	int		y;
+	int		pres;
+	t_param		*param;
+
+	param = (t_param*)p;
+	pres = param->pres;
+	x = 2;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel(param, x, y, pres);
+			y += 1;
+		}
+		x += 4;
+	}
+	return (NULL);
+}
+
+void	*trd_func_4(void *p)
+{
+	int		x;
+	int		y;
+	int		pres;
+	t_param		*param;
+
+	param = (t_param*)p;
+	pres = param->pres;
+	x = 3;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel(param, x, y, pres);
+			y += 1;
+		}
+		x += 4;
+	}
+	return (NULL);
+}
+
+
+void	m_mald(t_param *param)
+{
 	pthread_t	t1;
 	pthread_t	t2;
+	pthread_t	t3;
+	pthread_t	t4;
 
-	pthread_create(&t1, NULL, trd_func_even, param);
-	pthread_create(&t2, NULL, trd_func_odd, param);
+	pthread_create(&t1, NULL, trd_func_1, param);
+	pthread_create(&t2, NULL, trd_func_2, param);
+	pthread_create(&t3, NULL, trd_func_3, param);
+	pthread_create(&t4, NULL, trd_func_4, param);
        	// errors
 	pthread_join(t1, NULL);
 	pthread_join(t2, NULL);
+	pthread_join(t3, NULL);
+	pthread_join(t4, NULL);
 }
 
 void	m_frac(t_param *param, long double mult)
@@ -194,24 +185,31 @@ void	m_frac(t_param *param, long double mult)
 
 void	change_pres(t_param *param, int pres)
 {
+	free_palette(param->palette, param->pres);
 	param->pres += pres;
 	printf("pres = %d\n", param->pres);
+	param->palette = new_palette(param->pres, param->color_scheme);
+	m_mald(param);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
+}
+
+void	random_color(t_param *param)
+{
+	free_palette(param->palette, param->pres);
+	param->palette = new_palette(param->pres, RANDOM_SCHEME);
 	m_mald(param);
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	change_color(t_param *param)
 {
-	param->k += 1;
-	m_mald(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
-}
-
-void	change_color_par(t_param *param, int k1, int k2, int k3)
-{
-	param->k1 += k1;
-	param->k2 += k2;
-	param->k3 += k3;
+	param->color_scheme += 1;
+	if (param->color_scheme >= COLOR_SCHEME_MAX)
+	{
+		param->color_scheme = 0;
+	}
+	free_palette(param->palette, param->pres);
+	param->palette = new_palette(param->pres, param->color_scheme);
 	m_mald(param);
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }

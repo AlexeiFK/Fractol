@@ -3,7 +3,7 @@ NAME = fractol
 
 #FLAGS = -Wall -Wextra -Werror
 
-FLAGS = -O2
+FLAGS = -Ofast
 
 LIBFT = -L libft/ -lft
 
@@ -11,7 +11,7 @@ MINILIB = -L minilibx_macos/ -lmlx
 
 #FRAMEW = -framework OpenGL -framework Appkit
 
-CFILES = main.c controls.c print.c
+CFILES = main.c controls.c print.c julia.c m_treads.c palette.c
 
 OBJ = $(CFILES:%.c=%.o)
 
@@ -19,7 +19,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) fractol.h config.h
 	make -C libft
-	gcc $(FLAGS) $(OBJ) -o $(NAME) -lm -Iminilibx/include -lbsd $(pkg-config --libs libbsd) $(LIBFT) -L/usr/X11/lib /usr/X11/lib/libmlx.a -lbsd -lXext -lbsd -lX11 -lbsd
+	gcc $(FLAGS) $(OBJ) -o $(NAME) -lm -Iminilibx/include -lbsd $(pkg-config --libs libbsd) $(LIBFT) -L/usr/X11/lib /usr/X11/lib/libmlx.a -lbsd -lXext -lbsd -lX11 -lbsd -lpthread
 
 $(OBJ): $(CFILES) fractol.h config.h
 	gcc $(FLAGS) -c $(CFILES) -lm -Ilibft -Iminilibx_macos

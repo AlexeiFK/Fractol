@@ -40,8 +40,7 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	c_y = (yd - (param->j_start_y)) / param->j_mult;
 	i = 0;
 	i = to_iterate(c_x, c_y, i, i_max, param->julia_x, param->julia_y);
-	set_color(param, i, i_max, &spec);
-	ch_pixel_put(param, xd, yd, &spec);
+	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
 static void	*trd_func_odd(void *p)

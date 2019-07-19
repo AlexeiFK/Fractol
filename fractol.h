@@ -25,18 +25,15 @@ typedef struct		s_param
 	long double	start_x;
 	long double	start_y;
 	long double	mult;
-	int		k;
-	int		k1;
-	int		k2;
-	int		k3;
+	int		color_scheme;
 	int		pres;
 	long double	julia_x;
 	long double	julia_y;
 	long double	j_start_x;
 	long double	j_start_y;
 	long double	j_mult;
-	t_spec		palette;
-	int		pal_size;	
+	t_spec		**palette;
+	int		pal_size;
 }			t_param;
 
 int		mouse_f(int buttom, int x, int y, void *param);
@@ -54,6 +51,9 @@ void		print_j(t_param *param, long double mult, long double x, long double y);
 void		create_j(t_param *param, long double mult, long double x, long double y);
 void		x_y_convert(t_param *param, long double x, long double y); //long double *new_x, long double *new_y)
 void		ch_pixel_put(t_param *param, int x, int y, t_spec *c);
-
+void		choose_color(t_spec *to_color, int color_scheme, int size, int i);
+t_spec		**new_palette(int size, int color_scheme);
+void		free_palette(t_spec **pal, int size);
+void		random_color(t_param *param);
 
 #endif

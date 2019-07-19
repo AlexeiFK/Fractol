@@ -13,16 +13,16 @@ int		keyboard_fj(int keycode, void *param)
 	if (keycode == QKEY)
 		print(param, 1, WINDOW_WIDTH, WINDOW_HEIGTH);
 	//	change_color_par(param, 0, 0, 1);
-	if (keycode == WKEY)
+/*	if (keycode == WKEY)
 		change_color_par(param, 0, 1, 0);
 	if (keycode == EKEY)
 		change_color_par(param, 1, 0, 0);
 	if (keycode == AKEY)
 		change_color_par(param, 0, 0, -1);
 	if (keycode == SKEY)
-		change_color_par(param, 0, -1, 0);
-	if (keycode == DKEY)
-		change_color_par(param, -1, 0, 0);
+		change_color_par(param, 0, -1, 0);*/
+	if (keycode == WKEY)
+		change_color(param);
 	if (keycode == ZKEY)
 		change_pres(param, 10);
 	if (keycode == XKEY)
@@ -60,7 +60,7 @@ int		mouse_fj(int buttom, int x, int y, void *param)
 int		keyboard_f(int keycode, void *param)
 {
 //	printf("_______________________________%d\n", keycode);
-	if (keycode == QKEY)
+/*	if (keycode == QKEY)
 		change_color_par(param, 0, 0, 1);
 	if (keycode == WKEY)
 		change_color_par(param, 0, 1, 0);
@@ -71,11 +71,15 @@ int		keyboard_f(int keycode, void *param)
 	if (keycode == SKEY)
 		change_color_par(param, 0, -1, 0);
 	if (keycode == DKEY)
-		change_color_par(param, -1, 0, 0);
+		change_color_par(param, -1, 0, 0);*/
+	if (keycode == WKEY)
+		change_color(param);
+	if (keycode == QKEY)
+		random_color(param);
 	if (keycode == ZKEY)
-		change_pres(param, 10);
+		change_pres(param, 100);
 	if (keycode == XKEY)
-		change_pres(param, -10);
+		change_pres(param, -100);
 	if (keycode == ARROW_D)
 		shift_set(param, 0, 20);
 	if (keycode == ARROW_U)

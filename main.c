@@ -5,6 +5,19 @@
 #include "fractol.h"
 #include "mlx.h"
 
+
+static int	min_mult(int width, int height)
+{
+	if (width > height)
+	{
+		return (height / SCREEN_UNITS_W);
+	}
+	else
+	{
+		return (width / SCREEN_UNITS_W);
+	}
+}
+
 static void	mlx_setup(t_param *param)
 {
 	int	bits;
@@ -17,13 +30,11 @@ static void	mlx_setup(t_param *param)
 	param->start_y = WINDOW_H_C;
 	param->j_start_x = WINDOW_W_C;
 	param->j_start_y = WINDOW_H_C;
-	param->pres = 255;
-	param->k = 100;
-	param->k1 = 1;
-	param->k2 = 1;
-	param->k3 = 1;
-	param->mult = -100.0;
-	param->j_mult = -100.0;
+	param->pres = 1000;
+	param->color_scheme = 0;
+	param->palette = new_palette(param->pres, param->color_scheme);
+	param->mult = min_mult(WINDOW_WIDTH - BUFFER, WINDOW_HEIGTH - BUFFER);
+	param->j_mult = min_mult(WINDOW_WIDTH - BUFFER, WINDOW_HEIGTH - BUFFER);
 	param->s = mlx_get_data_addr(param->img_ptr, &bits, &(param->size), &endian);
 }
 

@@ -4,10 +4,15 @@
 # define CONFIG_H
 
 # define W_NAME "Fractol42"
-# define WINDOW_HEIGTH 800
-# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGTH 600
+# define WINDOW_WIDTH 900
 # define WINDOW_H_C WINDOW_HEIGTH/2
 # define WINDOW_W_C WINDOW_WIDTH/2
+# define SCREEN_UNITS_W -4
+# define COLOR_SCHEME_MAX 19
+# define RANDOM_SCHEME 2048
+# define BUFFER 50
+# define TREADS_NUM 4
 # define SENS_HOR 100
 # define SENS_VERT 100
 # define SENS_ZOOM_IN 1.1
