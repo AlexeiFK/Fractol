@@ -10,8 +10,16 @@
 int		keyboard_fj(int keycode, void *param)
 {
 //	printf("_______________________________%d\n", keycode);
-	if (keycode == QKEY)
+	t_param		*p;	
+
+	p = (t_param*)param;
+	if (keycode == EKEY)
+	{
 		print(param, 1, WINDOW_WIDTH, WINDOW_HEIGTH);
+		p->current_fractal = MAND;
+	}
+	if (keycode == QKEY)
+		random_color_j(param);
 	//	change_color_par(param, 0, 0, 1);
 /*	if (keycode == WKEY)
 		change_color_par(param, 0, 1, 0);
@@ -22,7 +30,7 @@ int		keyboard_fj(int keycode, void *param)
 	if (keycode == SKEY)
 		change_color_par(param, 0, -1, 0);*/
 	if (keycode == WKEY)
-		change_color(param);
+		change_color_j(param);
 	if (keycode == ZKEY)
 		change_pres(param, 10);
 	if (keycode == XKEY)
@@ -34,25 +42,31 @@ int		keyboard_fj(int keycode, void *param)
 
 int		mouse_fj(int buttom, int x, int y, void *param)
 {
-	static int	i = 0;
+	t_param		*p;	
+
+	p = (t_param*)param;
 	if (buttom == 1)
 	{
-		printf("i = %d\n", i);
 		x_y_convert(param, x, y);
 	}
 	if (buttom == 3)
 	{
+		p->current_fractal = JULIA;
 		create_j(param, 1, x, y);
 	}
 	if (buttom == 5)
 	{
-		i--;
-		print_j(param, 0.9, x, y);
+		if (p->current_fractal == JULIA)
+			print_j(param, 0.9, x, y);
+		else if (p->current_fractal == MAND)
+			print(param, 0.9, x, y);
 	}
 	if (buttom == 4)
 	{
-		i++;
-		print_j(param, 1.1, x, y);
+		if (p->current_fractal == JULIA)
+			print_j(param, 1.1, x, y);
+		else if (p->current_fractal == MAND)
+			print(param, 1.1, x, y);
 	}
 	return (0);
 }

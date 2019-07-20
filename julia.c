@@ -104,6 +104,27 @@ void	m_julia(t_param *param)
 	pthread_join(t2, NULL);
 }
 
+void	random_color_j(t_param *param)
+{
+	free_palette(param->palette, param->pres);
+	param->palette = new_palette(param->pres, RANDOM_SCHEME);
+	m_julia(param);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
+}
+
+void	change_color_j(t_param *param)
+{
+	param->color_scheme += 1;
+	if (param->color_scheme >= COLOR_SCHEME_MAX)
+	{
+		param->color_scheme = 0;
+	}
+	free_palette(param->palette, param->pres);
+	param->palette = new_palette(param->pres, param->color_scheme);
+	m_julia(param);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
+}
+
 void	create_j(t_param *param, long double mult, long double x, long double y)
 {
 	long double		res1;

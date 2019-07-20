@@ -32,6 +32,7 @@ typedef struct		s_param
 	long double	j_start_x;
 	long double	j_start_y;
 	long double	j_mult;
+	int		current_fractal;
 	t_spec		**palette;
 	int		pal_size;
 }			t_param;
@@ -42,6 +43,7 @@ int		mouse_fj(int buttom, int x, int y, void *param);
 int		keyboard_fj(int keycode, void *param);
 int		hook_f(void *param);
 void		change_color(t_param *param);
+void		change_color_j(t_param *param);
 void		shift_set(t_param *param, long double x, long double y);
 void		change_pres(t_param *param, int pres);
 void		set_color(t_param *param, int i, int i_max, t_spec *spec);
@@ -55,5 +57,6 @@ void		choose_color(t_spec *to_color, int color_scheme, int size, int i);
 t_spec		**new_palette(int size, int color_scheme);
 void		free_palette(t_spec **pal, int size);
 void		random_color(t_param *param);
+void		random_color_j(t_param *param);
 
 #endif

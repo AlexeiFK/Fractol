@@ -30,6 +30,7 @@ static void	mlx_setup(t_param *param)
 	param->start_y = WINDOW_H_C;
 	param->j_start_x = WINDOW_W_C;
 	param->j_start_y = WINDOW_H_C;
+	param->current_fractal = MAND;
 	param->pres = 1000;
 	param->color_scheme = 0;
 	param->palette = new_palette(param->pres, param->color_scheme);
