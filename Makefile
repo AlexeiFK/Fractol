@@ -3,7 +3,7 @@ NAME = fractol
 
 #FLAGS = -Wall -Wextra -Werror
 
-FLAGS = -Ofast
+FLAGS = -O2
 
 LIBFT = -L libft/ -lft
 
