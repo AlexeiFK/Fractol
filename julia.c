@@ -1,9 +1,10 @@
 
 #include "fractol.h"
 #include "mlx.h"
+#include <stdio.h>
 #include <pthread.h>
 
-static int	to_iterate(long double s_x, long double s_y, int i, int i_max, long double c_x, long double c_y)
+static int	to_iterate(long double s_x, long double s_y, int i, t_param *p)
 {
 	long double	x;	
 	long double	y;
@@ -16,14 +17,14 @@ static int	to_iterate(long double s_x, long double s_y, int i, int i_max, long d
 	xx = x * x;
 	yy = y * y;
 	xy2 = 0;
-	while (i < i_max && ((xx + yy) <= 4.0))
+	while (i < p->pres && ((xx + yy) <= 4.0))
 	{
 		xx = x * x;
 		yy = y * y;
 		xy2 = x * y;
 		xy2 += xy2;
-		y = xy2 + c_y;
-		x = xx - yy + c_x;
+		y = xy2 + p->julia_y;
+		x = xx - yy + p->julia_x;
 		++i;
 	}
 	return (i);
@@ -39,20 +40,22 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	c_x = ((param->j_start_x) - xd) / param->j_mult;
 	c_y = (yd - (param->j_start_y)) / param->j_mult;
 	i = 0;
-	i = to_iterate(c_x, c_y, i, i_max, param->julia_x, param->julia_y);
+	i = to_iterate(c_x, c_y, i, param);
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-static void	*trd_func_odd(void *p)
+static void	*trd_func(void *p)
 {
 	int		x;
 	int		y;
 	int		pres;
 	t_param		*param;
+	t_thread_param	*thread_param;
 
-	param = (t_param*)p;
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
 	pres = param->pres;
-	x = 1;
+	x = thread_param->pixel_start;
 	while (x < WINDOW_WIDTH)
 	{
 		y = 0;
@@ -61,49 +64,45 @@ static void	*trd_func_odd(void *p)
 			check_pixel(param, x, y, pres);
 			y += 1;
 		}
-		x += 2;
-	}
-	return (NULL);
-}
-
-static void	*trd_func_even(void *p)
-{
-	int		x;
-	int		y;
-	int		pres;
-	t_param		*param;
-
-	param = (t_param*)p;
-	pres = param->pres;
-	x = 0;
-	while (x < WINDOW_WIDTH)
-	{
-		y = 0;
-		while (y < WINDOW_HEIGTH)
-		{
-			check_pixel(param, x, y, pres);
-			y += 1;
-		}
-		x += 2;
+		x += THREADS_NUM;
 	}
 	return (NULL);
 }
 
 void	m_julia(t_param *param)
 {
-	int		x;
-	int		y;
-	int		pres;
-	pthread_t	t1;
-	pthread_t	t2;
+	pthread_t	t[THREADS_NUM];
+	t_thread_param	p[THREADS_NUM];
+	int		i;
 
-	pthread_create(&t1, NULL, trd_func_even, param);
-	pthread_create(&t2, NULL, trd_func_odd, param);
+	i = 0;
+	while (i < THREADS_NUM)
+	{
+		p[i].pixel_start = i;
+		p[i].p = param;
+		pthread_create(&t[i], NULL, trd_func, &p[i]);
+		i++;
+	}
+	i = 0;
+	while (i < THREADS_NUM)
+	{
+		pthread_join(t[i], NULL);
+		i++;
+	}
+//	upscale(param);
+///	chess_scale(param);
        	// errors
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
 }
 
+void	change_pres_j(t_param *param, int pres)
+{
+	free_palette(param->palette, param->pres);
+	param->pres += pres;
+	printf("pres = %d\n", param->pres);
+	param->palette = new_palette(param->pres, param->color_scheme);
+	m_julia(param);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
+}
 void	random_color_j(t_param *param)
 {
 	free_palette(param->palette, param->pres);

@@ -62,62 +62,212 @@ void	check_pixel(t_param *param, long double xd, long double yd, int i_max) //lo
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-void	*trd_func_1(void *p)
+float	to_iterate_smooth(long double c_x, long double c_y, int i, int i_max)
 {
-	int		x;
-	int		y;
-	int		pres;
-	t_param		*param;
+	long double	x;	
+	long double	y;
+	long double	xx;	
+	long double	yy;
+	long double	xy2;
 
-	param = (t_param*)p;
-	pres = param->pres;
+	x = 0;
+	y = 0;
+	xx = 0;
+	yy = 0;
+	xy2 = 0;
+	while (i < i_max && ((xx + yy) <= SMOOTH_ESCAPE))
+	{
+		xx = x * x;
+		yy = y * y;
+		xy2 = x * y;
+		xy2 += xy2;
+		y = xy2 + c_y;
+		x = xx - yy + c_x;
+		i += 1.0;
+	}
+	if (i == i_max)
+		return (i);
+	return (i - log2(log2(xx + yy)) + 4.0);
+}
+
+void	get_smooth_color(float i, float i_max, t_spec *s, t_param *param)
+{
+	int	i_up;
+	int	i_down;
+	int	temp;
+	t_spec	*up;
+	t_spec	*down;
+
+	temp = floor(i * SMOOTH_EXTRA_PAL);
+	if (temp < 0 || temp > (i_max * SMOOTH_EXTRA_PAL))
+		return ;
+	s->r = param->palette[temp]->r;
+	s->g = param->palette[temp]->g;
+	s->b = param->palette[temp]->b;
+}
+
+void	check_pixel_smooth(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
+{
+	long double	c_x;	
+	long double	c_y;
+	float		i;
+	t_spec		spec;
+
+	c_x = ((param->start_x) - xd) / param->mult;
+	c_y = (yd - (param->start_y)) / param->mult;
+	i = 0;
+	i = to_iterate_smooth(c_x, c_y, i, i_max);
+	get_smooth_color(i, i_max, &spec, param);
+	ch_pixel_put(param, xd, yd, &spec);
+}
+
+void	check_pixel_big(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
+{
+	long double	c_x;	
+	long double	c_y;
+	int		i;
+	t_spec		spec;
+
+	c_x = ((param->start_x) - xd) / param->mult;
+	c_y = (yd - (param->start_y)) / param->mult;
+	i = 0;
+	i = to_iterate(c_x, c_y, i, i_max);
+	ch_pixel_put(param, xd, yd, param->palette[i]);
+//	ch_pixel_put(param, xd + 1, yd, param->palette[i]);
+//	ch_pixel_put(param, xd, yd + 1, param->palette[i]);
+//	ch_pixel_put(param, xd + 1, yd + 1, param->palette[i]);
+}
+
+void	biliner_put_4dots(t_param *param, int x, int y)
+{
+	unsigned char	*sm;
+	unsigned char	*sp;
+	unsigned char	*sn;
+	int		temp;
+
+	sp = param->s;
+	sp += (param->size * (y - 1));
+	sn = param->s;
+	sn += (param->size * (y + 1));
+	sm = param->s;
+	sm += (param->size * y);
+	temp = (sp[x * 4] + sn[x * 4] + sm[(x + 1) * 4] + sm[(x - 1) * 4]) / 4;
+	sm[x * 4] = temp;
+	temp = (sp[x * 4 + 1] + sn[x * 4 + 1] + sm[(x + 1) * 4 + 1] + sm[(x - 1) * 4 + 1]) / 4;
+	sm[x * 4 + 1] = temp;
+	temp = (sp[x * 4 + 2] + sn[x * 4 + 2] + sm[(x + 1) * 4 + 2] + sm[(x - 1) * 4 + 2]) / 4;
+	sm[x * 4 + 2] = temp;
+}
+
+void	biliner_put(t_param *param, int x, int y)
+{
+	unsigned char	*sm;
+	unsigned char	*sp;
+	unsigned char	*sn;
+	int		temp;
+
+	sp = param->s;
+	sp += (param->size * (y - 1));
+	sn = param->s;
+	sn += (param->size * (y + 1));
+	sm = param->s;
+	sm += (param->size * y);
+	temp = (sp[x * 4] + sn[x * 4]) / 2;
+	sm[x * 4] = temp;
+	temp = (sp[x * 4 + 1] + sn[x * 4 + 1]) / 2;
+	sm[x * 4 + 1] = temp;
+	temp = (sp[x * 4 + 2] + sn[x * 4 + 2]) / 2;
+	sm[x * 4 + 2] = temp;
+}
+
+void	biliner_put_hor(t_param *param, int x, int y)
+{
+	unsigned char	*sm;
+	int		temp;
+
+	sm = param->s;
+	sm += (param->size * y);
+	temp = (sm[(x + 1) * 4] + sm[(x - 1) * 4]) / 2;
+	sm[x * 4] = temp;
+	temp = (sm[(x + 1) * 4 + 1] + sm[(x - 1) * 4 + 1]) / 2;
+	sm[x * 4 + 1] = temp;
+	temp = (sm[(x + 1) * 4 + 2] + sm[(x - 1) * 4 + 2]) / 2;
+	sm[x * 4 + 2] = temp;
+}
+
+void	chess_scale(t_param *param)
+{
+	int	x;
+	int	y;
+	int	y_start;
+
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
-		y = 0;
+		if (x % 2 == 0)
+			y = 1;
+		else
+			y = 0;
 		while (y < WINDOW_HEIGTH)
 		{
-			check_pixel(param, x, y, pres);
-			y += 1;
+			biliner_put_4dots(param, x, y);
+			y += 2;
 		}
-		x += 4;
+		x += 1;
 	}
-	return (NULL);
 }
-
-void	*trd_func_2(void *p)
+void	upscale(t_param *param)
 {
-	int		x;
-	int		y;
-	int		pres;
-	t_param		*param;
+	int	x;
+	int	y;
 
-	param = (t_param*)p;
-	pres = param->pres;
+	x = 0;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 1;
+		while (y < WINDOW_HEIGTH)
+		{
+			biliner_put(param, x, y);
+			y += 2;
+		}
+		x += 2;
+	}
 	x = 1;
 	while (x < WINDOW_WIDTH)
 	{
 		y = 0;
 		while (y < WINDOW_HEIGTH)
 		{
-			check_pixel(param, x, y, pres);
-			y += 1;
+			biliner_put_hor(param, x, y);
+			y += 2;
 		}
-		x += 4;
+		x += 2;
 	}
-	return (NULL);
+	x = 1;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 1;
+		while (y < WINDOW_HEIGTH)
+		{
+			biliner_put(param, x, y);
+			y += 2;
+		}
+		x += 2;
+	}
 }
 
-void	*trd_func_3(void *p)
+void	*trd_func(void *p)
 {
 	int		x;
 	int		y;
 	int		pres;
 	t_param		*param;
+	t_thread_param	*thread_param;
 
-	param = (t_param*)p;
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
 	pres = param->pres;
-	x = 2;
+	x = thread_param->pixel_start;
 	while (x < WINDOW_WIDTH)
 	{
 		y = 0;
@@ -126,62 +276,114 @@ void	*trd_func_3(void *p)
 			check_pixel(param, x, y, pres);
 			y += 1;
 		}
-		x += 4;
+		x += THREADS_NUM;
 	}
 	return (NULL);
 }
 
-void	*trd_func_4(void *p)
+void	*trd_func_smooth(void *p)
 {
 	int		x;
 	int		y;
 	int		pres;
 	t_param		*param;
+	t_thread_param	*thread_param;
 
-	param = (t_param*)p;
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
 	pres = param->pres;
-	x = 3;
+	x = thread_param->pixel_start;
 	while (x < WINDOW_WIDTH)
 	{
 		y = 0;
 		while (y < WINDOW_HEIGTH)
 		{
-			check_pixel(param, x, y, pres);
+			check_pixel_smooth(param, x, y, pres);
 			y += 1;
 		}
-		x += 4;
+		x += THREADS_NUM;
+	}
+	return (NULL);
+}
+void	*trd_func_big(void *p)
+{
+	int		x;
+	int		y;
+	int		pres;
+	t_param		*param;
+	t_thread_param	*thread_param;
+
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
+	pres = param->pres;
+	x = thread_param->pixel_start * 2;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel_big(param, x, y, pres);
+			y += 2;
+		}
+		x += (THREADS_NUM * 2);
 	}
 	return (NULL);
 }
 
+void	*trd_func_chess(void *p)
+{
+	int		x;
+	int		y;
+	int		y_start;
+	int		pres;
+	t_param		*param;
+	t_thread_param	*thread_param;
+
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
+	x = thread_param->pixel_start;// * 2;
+	if (x % 2 == 0)
+		y_start = 0;
+	else
+		y_start = 1;
+	while (x < WINDOW_WIDTH)
+	{
+		y = y_start;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel_big(param, x, y, param->pres);
+			y += 2;
+		}
+		x += (THREADS_NUM);
+	}
+	return (NULL);
+}
 
 void	m_mald(t_param *param)
 {
-	pthread_t	t1;
-	pthread_t	t2;
-	pthread_t	t3;
-	pthread_t	t4;
+	pthread_t	t[THREADS_NUM];
+	t_thread_param	p[THREADS_NUM];
+	int		i;
 
-	pthread_create(&t1, NULL, trd_func_1, param);
-	pthread_create(&t2, NULL, trd_func_2, param);
-	pthread_create(&t3, NULL, trd_func_3, param);
-	pthread_create(&t4, NULL, trd_func_4, param);
+	i = 0;
+	while (i < THREADS_NUM)
+	{
+		p[i].pixel_start = i;
+		p[i].p = param;
+		pthread_create(&t[i], NULL, trd_func, &p[i]);
+		i++;
+	}
+	i = 0;
+	while (i < THREADS_NUM)
+	{
+		pthread_join(t[i], NULL);
+		i++;
+	}
+//	upscale(param);
+///	chess_scale(param);
        	// errors
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
-	pthread_join(t3, NULL);
-	pthread_join(t4, NULL);
 }
 
-void	m_frac(t_param *param, long double mult)
-{
-	t_spec		spec;
-	long double	x;
-	long double	y;
-	spec.r = 255;
-	spec.g = 0;
-	spec.b = 0;
-}
 
 void	change_pres(t_param *param, int pres)
 {

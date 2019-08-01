@@ -18,7 +18,7 @@ static int	min_mult(int width, int height)
 	}
 }
 
-static void	mlx_setup(t_param *param)
+static void	mlx_setup(t_param *param, int fractal)
 {
 	int	bits;
 	int	endian;
@@ -30,8 +30,8 @@ static void	mlx_setup(t_param *param)
 	param->start_y = WINDOW_H_C;
 	param->j_start_x = WINDOW_W_C;
 	param->j_start_y = WINDOW_H_C;
-	param->current_fractal = MAND;
-	param->pres = 1000;
+	param->current_fractal = fractal;
+	param->pres = 100;
 	param->color_scheme = 0;
 	param->palette = new_palette(param->pres, param->color_scheme);
 	param->mult = min_mult(WINDOW_WIDTH - BUFFER, WINDOW_HEIGTH - BUFFER);
@@ -53,16 +53,17 @@ int		main(int argc, char **argv)
 		usage_msg();
 	if (ft_strcmp(argv[1], "Mand") == 0)
 	{
-		mlx_setup(&param);
+		mlx_setup(&param, MAND);
 		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
 		print(&param, 1, WINDOW_W_C, WINDOW_H_C);
 	}
 	else if (ft_strcmp(argv[1], "Julia") == 0)
 	{
-		mlx_setup(&param);
+		mlx_setup(&param, JULIA_MOUSE);
 		mlx_key_hook(param.win_ptr, keyboard_fj, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_fj, (void*)(&param));
+		mlx_hook(param.win_ptr, 6, (1L<<6), mouse_move_f, (void*)(&param));
 	}
 	else
 		usage_msg();

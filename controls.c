@@ -3,6 +3,7 @@
 #include "mlx.h"
 #include "fractol.h"
 #include "config.h"
+#include "keys.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,23 +21,39 @@ int		keyboard_fj(int keycode, void *param)
 	}
 	if (keycode == QKEY)
 		random_color_j(param);
+	if (keycode == AKEY)
+	{
+		p->current_fractal = JULIA_MOUSE;
+	}
+	if (keycode == SKEY)
+	{
+		p->current_fractal = JULIA;
+	}
 	//	change_color_par(param, 0, 0, 1);
 /*	if (keycode == WKEY)
 		change_color_par(param, 0, 1, 0);
 	if (keycode == EKEY)
 		change_color_par(param, 1, 0, 0);
-	if (keycode == AKEY)
-		change_color_par(param, 0, 0, -1);
 	if (keycode == SKEY)
 		change_color_par(param, 0, -1, 0);*/
 	if (keycode == WKEY)
 		change_color_j(param);
 	if (keycode == ZKEY)
-		change_pres(param, 10);
+		change_pres_j(param, 10);
 	if (keycode == XKEY)
-		change_pres(param, -10);
+		change_pres_j(param, -10);
 	if (keycode == ESC)
 		exit(0);
+	return (0);
+}
+
+int		mouse_move_f(int x, int y, void *param)
+{
+	t_param		*p;	
+
+	p = (t_param*)param;
+	if (p->current_fractal == JULIA_MOUSE)
+		create_j(param, 1, x, y);
 	return (0);
 }
 
@@ -91,9 +108,9 @@ int		keyboard_f(int keycode, void *param)
 	if (keycode == QKEY)
 		random_color(param);
 	if (keycode == ZKEY)
-		change_pres(param, 100);
+		change_pres(param, 10);
 	if (keycode == XKEY)
-		change_pres(param, -100);
+		change_pres(param, -10);
 	if (keycode == ARROW_D)
 		shift_set(param, 0, 20);
 	if (keycode == ARROW_U)

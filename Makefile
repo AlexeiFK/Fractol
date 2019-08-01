@@ -11,17 +11,17 @@ MINILIB = -L minilibx_macos/ -lmlx
 
 #FRAMEW = -framework OpenGL -framework Appkit
 
-CFILES = main.c controls.c print.c julia.c m_treads.c palette.c
+CFILES = main.c controls.c print.c julia.c m_treads.c palette.c color_scheme.c
 
 OBJ = $(CFILES:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) fractol.h config.h
+$(NAME): $(OBJ) fractol.h config.h keys.h colors.h
 	make -C libft
 	gcc $(FLAGS) $(OBJ) -o $(NAME) -lm -Iminilibx/include -lbsd $(pkg-config --libs libbsd) $(LIBFT) -L/usr/X11/lib /usr/X11/lib/libmlx.a -lbsd -lXext -lbsd -lX11 -lbsd -lpthread
 
-$(OBJ): $(CFILES) fractol.h config.h
+$(OBJ): $(CFILES) fractol.h config.h keys.h colors.h
 	gcc $(FLAGS) -c $(CFILES) -lm -Ilibft -Iminilibx_macos
 
 clean:
