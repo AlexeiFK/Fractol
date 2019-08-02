@@ -41,7 +41,13 @@ static void	mlx_setup(t_param *param, int fractal)
 
 static void	usage_msg(void)
 {
-	ft_putstr("usage: Mand, Julia, etc\n");
+	ft_putstr("usage: ./fractol [fractal_name]\n");
+	ft_putstr("fractal names:\n");
+	ft_putstr("Mand = Mandelbrot set\n");
+	ft_putstr("Julia = Julia set\n");
+	ft_putstr("Bsf = Burning Ship Fractal\n");
+	ft_putstr("MultiB = Multibrot sets\n");
+	ft_putstr("MultiJ = MultiJulia sets\n");
 	exit(0);
 }
 
@@ -56,7 +62,16 @@ int		main(int argc, char **argv)
 		mlx_setup(&param, MAND);
 		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
-		print(&param, 1, WINDOW_W_C, WINDOW_H_C);
+		param.fractal_func = trd_func;
+		calc_and_refresh(&param);
+	}
+	else if (ft_strcmp(argv[1], "Bsf") == 0)
+	{
+		mlx_setup(&param, MAND);
+		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
+		param.fractal_func = trd_func_ship;
+		calc_and_refresh(&param);
 	}
 	else if (ft_strcmp(argv[1], "Julia") == 0)
 	{

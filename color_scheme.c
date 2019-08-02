@@ -46,7 +46,7 @@ void		choose_colors_extra3(int *colors, int *n_colors, int color_scheme)
 	else if (color_scheme == 11)
 	{
 		colors[0] = BLACK;
-		colors[1] = BLACK;
+		colors[1] = 0xffb273;
 		*n_colors = 2;
 	}
 }

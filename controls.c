@@ -22,20 +22,9 @@ int		keyboard_fj(int keycode, void *param)
 	if (keycode == QKEY)
 		random_color_j(param);
 	if (keycode == AKEY)
-	{
 		p->current_fractal = JULIA_MOUSE;
-	}
 	if (keycode == SKEY)
-	{
 		p->current_fractal = JULIA;
-	}
-	//	change_color_par(param, 0, 0, 1);
-/*	if (keycode == WKEY)
-		change_color_par(param, 0, 1, 0);
-	if (keycode == EKEY)
-		change_color_par(param, 1, 0, 0);
-	if (keycode == SKEY)
-		change_color_par(param, 0, -1, 0);*/
 	if (keycode == WKEY)
 		change_color_j(param);
 	if (keycode == ZKEY)
@@ -91,18 +80,6 @@ int		mouse_fj(int buttom, int x, int y, void *param)
 int		keyboard_f(int keycode, void *param)
 {
 //	printf("_______________________________%d\n", keycode);
-/*	if (keycode == QKEY)
-		change_color_par(param, 0, 0, 1);
-	if (keycode == WKEY)
-		change_color_par(param, 0, 1, 0);
-	if (keycode == EKEY)
-		change_color_par(param, 1, 0, 0);
-	if (keycode == AKEY)
-		change_color_par(param, 0, 0, -1);
-	if (keycode == SKEY)
-		change_color_par(param, 0, -1, 0);
-	if (keycode == DKEY)
-		change_color_par(param, -1, 0, 0);*/
 	if (keycode == WKEY)
 		change_color(param);
 	if (keycode == QKEY)
@@ -121,6 +98,7 @@ int		keyboard_f(int keycode, void *param)
 		shift_set(param, -20, 0);
 	if (keycode == ESC)
 		exit(0);
+	calc_and_refresh(param);
 	return (0);
 }
 
@@ -136,23 +114,16 @@ int		mouse_f(int buttom, int x, int y, void *param)
 	{
 		change_color(param);
 	}
-	if (buttom == 5)
+	if (buttom == 5 && i > -20)
 	{
 		i--;
 		print(param, 0.9, x, y);
 	}
-	if (buttom == 4)
+	if (buttom == 4 && i < 430)
 	{
 		i++;
 		print(param, 1.1, x, y);
 	}
+	calc_and_refresh(param);
 	return (0);
-}
-
-int		hook_f(void *p)
-{
-	t_param		*param;	
-
-	param = (t_param*)p;
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }

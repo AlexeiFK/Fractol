@@ -44,7 +44,7 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-static void	*trd_func(void *p)
+static void	*trd_funcj(void *p)
 {
 	int		x;
 	int		y;
@@ -80,7 +80,7 @@ void	m_julia(t_param *param)
 	{
 		p[i].pixel_start = i;
 		p[i].p = param;
-		pthread_create(&t[i], NULL, trd_func, &p[i]);
+		pthread_create(&t[i], NULL, trd_funcj, &p[i]);
 		i++;
 	}
 	i = 0;

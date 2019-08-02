@@ -359,7 +359,7 @@ void	*trd_func_chess(void *p)
 	return (NULL);
 }
 
-void	m_mald(t_param *param)
+void	trd_starter(t_param *param, void *(*func)(void*))
 {
 	pthread_t	t[THREADS_NUM];
 	t_thread_param	p[THREADS_NUM];
@@ -370,7 +370,7 @@ void	m_mald(t_param *param)
 	{
 		p[i].pixel_start = i;
 		p[i].p = param;
-		pthread_create(&t[i], NULL, trd_func, &p[i]);
+		pthread_create(&t[i], NULL, func, &p[i]);
 		i++;
 	}
 	i = 0;
@@ -384,23 +384,19 @@ void	m_mald(t_param *param)
        	// errors
 }
 
-
 void	change_pres(t_param *param, int pres)
 {
 	free_palette(param->palette, param->pres);
 	param->pres += pres;
 	printf("pres = %d\n", param->pres);
 	param->palette = new_palette(param->pres, param->color_scheme);
-	m_mald(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	random_color(t_param *param)
 {
 	free_palette(param->palette, param->pres);
+	param->color_scheme = RANDOM_SCHEME;
 	param->palette = new_palette(param->pres, RANDOM_SCHEME);
-	m_mald(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	change_color(t_param *param)
@@ -412,16 +408,12 @@ void	change_color(t_param *param)
 	}
 	free_palette(param->palette, param->pres);
 	param->palette = new_palette(param->pres, param->color_scheme);
-	m_mald(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	shift_set(t_param *param, long double x, long double y)
 {
 	param->start_x += x;
 	param->start_y += y;
-	m_mald(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	print(t_param *param, long double mult, long double x, long double y)
@@ -434,8 +426,6 @@ void	print(t_param *param, long double mult, long double x, long double y)
 	param->start_x = x + res1;
 	param->start_y = y + res2;
 	param->mult = param->mult * mult;
-	m_mald(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	ch_pixel_put(t_param *param, int x, int y, t_spec *c)
@@ -447,4 +437,10 @@ void	ch_pixel_put(t_param *param, int x, int y, t_spec *c)
 	s[x * 4] = c->b;
 	s[x * 4 + 1] = c->g;
 	s[x * 4 + 2] = c->r;
+}
+
+void	calc_and_refresh(t_param *param)
+{
+	trd_starter(param, param->fractal_func);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
