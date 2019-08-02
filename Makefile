@@ -11,7 +11,7 @@ MINILIB = -L minilibx_macos/ -lmlx
 
 #FRAMEW = -framework OpenGL -framework Appkit
 
-CFILES = main.c controls.c print.c julia.c m_treads.c palette.c color_scheme.c ship.c
+CFILES = main.c controls.c print.c julia.c m_treads.c palette.c color_scheme.c ship.c tricorn.c
 
 OBJ = $(CFILES:%.c=%.o)
 

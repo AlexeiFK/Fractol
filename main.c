@@ -46,6 +46,7 @@ static void	usage_msg(void)
 	ft_putstr("Mand = Mandelbrot set\n");
 	ft_putstr("Julia = Julia set\n");
 	ft_putstr("Bsf = Burning Ship Fractal\n");
+	ft_putstr("Tricorn = Tricorn set\n");
 	ft_putstr("MultiB = Multibrot sets\n");
 	ft_putstr("MultiJ = MultiJulia sets\n");
 	exit(0);
@@ -71,6 +72,14 @@ int		main(int argc, char **argv)
 		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
 		param.fractal_func = trd_func_ship;
+		calc_and_refresh(&param);
+	}
+	else if (ft_strcmp(argv[1], "Tricorn") == 0)
+	{
+		mlx_setup(&param, MAND);
+		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
+		param.fractal_func = trd_func_tricorn;
 		calc_and_refresh(&param);
 	}
 	else if (ft_strcmp(argv[1], "Julia") == 0)

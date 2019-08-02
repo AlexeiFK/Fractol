@@ -71,6 +71,7 @@ void		random_color_j(t_param *param);
 void		change_pres_j(t_param *param, int pres);
 void		*trd_func(void *p);
 void		*trd_func_ship(void *p);
+void		*trd_func_tricorn(void *p);
 void		*trd_func_smooth(void *p);
 void		calc_and_refresh(t_param *param);
 
