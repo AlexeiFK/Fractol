@@ -74,6 +74,15 @@ int		main(int argc, char **argv)
 		param.fractal_func = trd_func_ship;
 		calc_and_refresh(&param);
 	}
+	else if (ft_strcmp(argv[1], "MultiB") == 0)
+	{
+		mlx_setup(&param, MAND);
+		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
+		param.fractal_func = trd_func_multibrot;
+		param.n = 2;
+		calc_and_refresh(&param);
+	}
 	else if (ft_strcmp(argv[1], "Tricorn") == 0)
 	{
 		mlx_setup(&param, MAND);

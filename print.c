@@ -416,6 +416,11 @@ void	shift_set(t_param *param, long double x, long double y)
 	param->start_y += y;
 }
 
+void	change_n(t_param *param, int n)
+{
+	param->n += n;
+}
+
 void	print(t_param *param, long double mult, long double x, long double y)
 {
 	long double		res1;

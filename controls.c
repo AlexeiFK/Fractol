@@ -89,9 +89,9 @@ int		keyboard_f(int keycode, void *param)
 	if (keycode == XKEY)
 		change_pres(param, -10);
 	if (keycode == ARROW_D)
-		shift_set(param, 0, 20);
+		change_n(param, -1);
 	if (keycode == ARROW_U)
-		shift_set(param, 0, -20);
+		change_n(param, 1);
 	if (keycode == ARROW_R)
 		shift_set(param, 20, 0);
 	if (keycode == ARROW_L)

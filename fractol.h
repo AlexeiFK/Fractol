@@ -36,6 +36,7 @@ typedef struct		s_param
 	int		current_fractal;
 	t_spec		**palette;
 	int		pal_size;
+	int		n;
 	void		 *(*fractal_func)(void*);
 }			t_param;
 
@@ -69,10 +70,12 @@ void		free_palette(t_spec **pal, int size);
 void		random_color(t_param *param);
 void		random_color_j(t_param *param);
 void		change_pres_j(t_param *param, int pres);
+void		change_n(t_param *param, int n);
 void		*trd_func(void *p);
 void		*trd_func_ship(void *p);
 void		*trd_func_tricorn(void *p);
 void		*trd_func_smooth(void *p);
+void		*trd_func_multibrot(void *p);
 void		calc_and_refresh(t_param *param);
 
 #endif

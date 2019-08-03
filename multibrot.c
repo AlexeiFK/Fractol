@@ -1,4 +1,5 @@
 
+
 #include <pthread.h>
 #include "fractol.h"
 #include "mlx.h"
@@ -7,30 +8,42 @@
 #include <stdio.h>
 #include <math.h>
 
-static int	to_iterate(long double c_x, long double c_y, int i, int i_max)
+void		c_power(long double *x_o, long double *y_o, int power)
 {
 	long double	x;	
 	long double	y;
 	long double	xx;	
 	long double	yy;
-	long double	xy2;
+	int		j;
 
-	c_y = -c_y;
+	x = *x_o;
+	y = *y_o;
+	j = 1;
+	while (j < power)
+	{
+		xx = x * *x_o;
+		yy = y * *y_o;
+		y = x * *y_o + *x_o * y;
+		x = xx - yy;
+		j++;
+	}
+	*x_o = x;
+	*y_o = y;
+}
+
+
+static int	to_iterate(long double c_x, long double c_y, int i, t_param *param)
+{
+	long double	x;	
+	long double	y;
+
 	x = 0;
 	y = 0;
-	xx = 0;
-	yy = 0;
-	xy2 = 0;
-	while (i < i_max && ((xx + yy) <= 4.0))
+	while (i < param->pres && ((x * x + y * y) <= 4.0))
 	{
-		y = fabsl(y);
-		x = fabsl(x);
-		xx = x * x;
-		yy = y * y;
-		xy2 = x * y;
-		xy2 += xy2;
-		y = xy2 + c_y;
-		x = xx - yy + c_x;
+		c_power(&x, &y, param->n);
+		y = y + c_y;
+		x = x + c_x;
 		++i;
 	}
 	return (i);
@@ -46,11 +59,11 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;
 	i = 0;
-	i = to_iterate(c_x, c_y, i, i_max);
+	i = to_iterate(c_x, c_y, i, param);
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-void	*trd_func_ship(void *p)
+void	*trd_func_multibrot(void *p)
 {
 	int		x;
 	int		y;
