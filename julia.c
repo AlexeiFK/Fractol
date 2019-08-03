@@ -44,7 +44,7 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-static void	*trd_funcj(void *p)
+void		*trd_funcj(void *p)
 {
 	int		x;
 	int		y;
@@ -100,15 +100,11 @@ void	change_pres_j(t_param *param, int pres)
 	param->pres += pres;
 	printf("pres = %d\n", param->pres);
 	param->palette = new_palette(param->pres, param->color_scheme);
-	m_julia(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 void	random_color_j(t_param *param)
 {
 	free_palette(param->palette, param->pres);
 	param->palette = new_palette(param->pres, RANDOM_SCHEME);
-	m_julia(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	change_color_j(t_param *param)
@@ -120,8 +116,6 @@ void	change_color_j(t_param *param)
 	}
 	free_palette(param->palette, param->pres);
 	param->palette = new_palette(param->pres, param->color_scheme);
-	m_julia(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	create_j(t_param *param, long double mult, long double x, long double y)
@@ -132,10 +126,6 @@ void	create_j(t_param *param, long double mult, long double x, long double y)
 	param->mult = param->mult * mult;
 	param->julia_x = ((param->start_x) - x) / param->mult;
 	param->julia_y = (y - (param->start_y)) / param->mult;
-	//param->julia_x = x;
-	//param->julia_y = y;
-	m_julia(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }
 
 void	print_j(t_param *param, long double mult, long double x, long double y)
@@ -148,6 +138,4 @@ void	print_j(t_param *param, long double mult, long double x, long double y)
 	param->j_start_x = x + res1;
 	param->j_start_y = y + res2;
 	param->j_mult = param->j_mult * mult;
-	m_julia(param);
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img_ptr, 0, 0); // destroy and yatayatayta
 }

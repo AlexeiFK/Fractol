@@ -97,6 +97,16 @@ int		main(int argc, char **argv)
 		mlx_key_hook(param.win_ptr, keyboard_fj, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_fj, (void*)(&param));
 		mlx_hook(param.win_ptr, 6, (1L<<6), mouse_move_f, (void*)(&param));
+		param.fractal_func = trd_funcj;
+	}
+	else if (ft_strcmp(argv[1], "MultiJ") == 0)
+	{
+		mlx_setup(&param, JULIA_MOUSE);
+		mlx_key_hook(param.win_ptr, keyboard_fj, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_fj, (void*)(&param));
+		mlx_hook(param.win_ptr, 6, (1L<<6), mouse_move_f, (void*)(&param));
+		param.n = 2;
+		param.fractal_func = trd_func_multijulia;
 	}
 	else
 		usage_msg();

@@ -31,8 +31,13 @@ int		keyboard_fj(int keycode, void *param)
 		change_pres_j(param, 10);
 	if (keycode == XKEY)
 		change_pres_j(param, -10);
+	if (keycode == ARROW_D)
+		change_n(param, -1);
+	if (keycode == ARROW_U)
+		change_n(param, 1);
 	if (keycode == ESC)
 		exit(0);
+	calc_and_refresh(param);
 	return (0);
 }
 
@@ -42,7 +47,10 @@ int		mouse_move_f(int x, int y, void *param)
 
 	p = (t_param*)param;
 	if (p->current_fractal == JULIA_MOUSE)
+	{
 		create_j(param, 1, x, y);
+		calc_and_refresh(param);
+	}
 	return (0);
 }
 
@@ -74,6 +82,7 @@ int		mouse_fj(int buttom, int x, int y, void *param)
 		else if (p->current_fractal == MAND)
 			print(param, 1.1, x, y);
 	}
+	calc_and_refresh(param);
 	return (0);
 }
 

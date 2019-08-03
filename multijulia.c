@@ -17,14 +17,11 @@ static int	to_iterate(long double s_x, long double s_y, int i, t_param *p)
 	xx = x * x;
 	yy = y * y;
 	xy2 = 0;
-	while (i < p->pres && ((xx + yy) <= 4.0))
+	while (i < p->pres && ((x * x + y * y) <= 4.0))
 	{
-		xx = x * x;
-		yy = y * y;
-		xy2 = x * y;
-		xy2 += xy2;
-		y = xy2 + p->julia_y;
-		x = xx - yy + p->julia_x;
+		c_power(&x, &y, p->n);
+		y = y + p->julia_y;
+		x = x + p->julia_x;
 		++i;
 	}
 	return (i);
@@ -44,7 +41,7 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-static void	*trd_funcj(void *p)
+void	*trd_func_multijulia(void *p)
 {
 	int		x;
 	int		y;

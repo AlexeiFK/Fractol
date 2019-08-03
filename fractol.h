@@ -72,10 +72,13 @@ void		random_color_j(t_param *param);
 void		change_pres_j(t_param *param, int pres);
 void		change_n(t_param *param, int n);
 void		*trd_func(void *p);
+void		*trd_funcj(void *p);
 void		*trd_func_ship(void *p);
 void		*trd_func_tricorn(void *p);
 void		*trd_func_smooth(void *p);
 void		*trd_func_multibrot(void *p);
+void		*trd_func_multijulia(void *p);
 void		calc_and_refresh(t_param *param);
+void		c_power(long double *x_o, long double *y_o, int power);
 
 #endif
