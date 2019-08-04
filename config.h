@@ -14,6 +14,8 @@
 # define JULIA 1
 # define JULIA_MOUSE 2
 # define MAND 0
+# define MAND_SMOOTH 9
+# define MAND_CHESS 10
 # define BUFFER 50
 # define THREADS_NUM 4
 # define SENS_HOR 100
@@ -23,5 +25,7 @@
 # define SMOOTH_ESCAPE 65536
 # define SMOOTH_EXTRA_PAL 25
 # define MAX_COLORS 10
+# define MULTI_POWER_MAX 10
+# define MULTI_POWER_MIN 2
 
 #endif

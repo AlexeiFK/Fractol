@@ -44,7 +44,7 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-void		*trd_funcj(void *p)
+void		*trd_func_julia(void *p)
 {
 	int		x;
 	int		y;
@@ -67,31 +67,6 @@ void		*trd_funcj(void *p)
 		x += THREADS_NUM;
 	}
 	return (NULL);
-}
-
-void	m_julia(t_param *param)
-{
-	pthread_t	t[THREADS_NUM];
-	t_thread_param	p[THREADS_NUM];
-	int		i;
-
-	i = 0;
-	while (i < THREADS_NUM)
-	{
-		p[i].pixel_start = i;
-		p[i].p = param;
-		pthread_create(&t[i], NULL, trd_funcj, &p[i]);
-		i++;
-	}
-	i = 0;
-	while (i < THREADS_NUM)
-	{
-		pthread_join(t[i], NULL);
-		i++;
-	}
-//	upscale(param);
-///	chess_scale(param);
-       	// errors
 }
 
 void	change_pres_j(t_param *param, int pres)

@@ -33,7 +33,10 @@ static void	mlx_setup(t_param *param, int fractal)
 	param->current_fractal = fractal;
 	param->pres = 100;
 	param->color_scheme = 0;
-	param->palette = new_palette(param->pres, param->color_scheme);
+	if (fractal == MAND_SMOOTH)
+		param->palette = new_palette(param->pres * SMOOTH_EXTRA_PAL, param->color_scheme);
+	else
+		param->palette = new_palette(param->pres, param->color_scheme);
 	param->mult = min_mult(WINDOW_WIDTH - BUFFER, WINDOW_HEIGTH - BUFFER);
 	param->j_mult = min_mult(WINDOW_WIDTH - BUFFER, WINDOW_HEIGTH - BUFFER);
 	param->s = mlx_get_data_addr(param->img_ptr, &bits, &(param->size), &endian);
@@ -48,6 +51,7 @@ static void	usage_msg(void)
 	ft_putstr("Bsf = Burning Ship Fractal\n");
 	ft_putstr("Tricorn = Tricorn set\n");
 	ft_putstr("MultiB = Multibrot sets\n");
+	ft_putstr("MandSm = Mandelbrot set smooth color\n");
 	ft_putstr("MultiJ = MultiJulia sets\n");
 	exit(0);
 }
@@ -63,7 +67,7 @@ int		main(int argc, char **argv)
 		mlx_setup(&param, MAND);
 		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
-		param.fractal_func = trd_func;
+		param.fractal_func = trd_func_mand;
 		calc_and_refresh(&param);
 	}
 	else if (ft_strcmp(argv[1], "Bsf") == 0)
@@ -72,6 +76,22 @@ int		main(int argc, char **argv)
 		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
 		param.fractal_func = trd_func_ship;
+		calc_and_refresh(&param);
+	}
+	else if (ft_strcmp(argv[1], "MandC") == 0)
+	{
+		mlx_setup(&param, MAND_CHESS);
+		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
+		param.fractal_func = trd_func_cmand;
+		calc_and_refresh(&param);
+	}
+	else if (ft_strcmp(argv[1], "MandSm") == 0)
+	{
+		mlx_setup(&param, MAND_SMOOTH);
+		mlx_key_hook(param.win_ptr, keyboard_f, (void*)(&param));
+		mlx_mouse_hook(param.win_ptr, mouse_f, (void*)(&param));
+		param.fractal_func = trd_func_smooth;
 		calc_and_refresh(&param);
 	}
 	else if (ft_strcmp(argv[1], "MultiB") == 0)
@@ -97,7 +117,7 @@ int		main(int argc, char **argv)
 		mlx_key_hook(param.win_ptr, keyboard_fj, (void*)(&param));
 		mlx_mouse_hook(param.win_ptr, mouse_fj, (void*)(&param));
 		mlx_hook(param.win_ptr, 6, (1L<<6), mouse_move_f, (void*)(&param));
-		param.fractal_func = trd_funcj;
+		param.fractal_func = trd_func_julia;
 	}
 	else if (ft_strcmp(argv[1], "MultiJ") == 0)
 	{

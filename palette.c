@@ -105,7 +105,6 @@ t_spec		**new_palette(int size, int color_scheme)
 	int		n_colors;
 	int		colors[MAX_COLORS];
 
-//	size = size * SMOOTH_EXTRA_PAL; //leak!
 	if (!(new = (t_spec**)malloc(sizeof(t_spec*) * size)))
 		return (NULL);
 	i = 0;
