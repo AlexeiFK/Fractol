@@ -1,30 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 20:01:42 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 20:01:44 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef KEYS_H
 # define KEYS_H
 
-# define ESC 49
-# define QKEY 113
-# define WKEY 119
-# define EKEY 101
-# define RKEY 114
-# define AKEY 97
-# define SKEY 115
-# define DKEY 100
-# define ZKEY 122
-# define XKEY 120
-# define TKEY 116
-# define GKEY 103
-# define FKEY 102
-# define HKEY 104
-# define KKEY 53
-# define LKEY 54
-# define OKEY 55
-# define VKEY 118
-# define BKEY 98
+# define ESC 53
+# define QKEY 12
+# define WKEY 13
+# define EKEY 14
+# define RKEY 15
+# define AKEY 0
+# define SKEY 1
+# define DKEY 2
+# define ZKEY 6
+# define XKEY 7
+# define TKEY 17
+# define GKEY 5
+# define FKEY 3
+# define HKEY 4
+# define KKEY 40
+# define LKEY 37
+# define OKEY 31
+# define VKEY 9
+# define BKEY 11
 # define CKEY 8
-# define ARROW_U 65362
-# define ARROW_D 65364
-# define ARROW_R 65363
-# define ARROW_L 65361
+# define ARROW_U 126
+# define ARROW_D 125
+# define ARROW_R 124
+# define ARROW_L 123
 
 #endif

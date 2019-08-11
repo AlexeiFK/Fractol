@@ -1,7 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_scheme.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:32:17 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 19:43:20 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
-#include "mlx.h"
 #include "config.h"
 #include "libft.h"
 #include <stdio.h>
@@ -10,7 +19,7 @@
 #include <time.h>
 #include "colors.h"
 
-void	choose_random_color(int *colors, int *n_colors)
+void		choose_random_color(int *colors, int *n_colors)
 {
 	int		i;
 
@@ -23,7 +32,6 @@ void	choose_random_color(int *colors, int *n_colors)
 		i++;
 	}
 }
-
 
 void		choose_colors_extra3(int *colors, int *n_colors, int color_scheme)
 {
@@ -67,8 +75,7 @@ void		choose_colors_extra2(int *colors, int *n_colors, int color_scheme)
 		colors[2] = BLACK;
 		colors[3] = WHITE;
 		colors[4] = BLACK;
-		colors[5] = WHITE;
-		*n_colors = 6;
+		*n_colors = 5;
 	}
 	else if (color_scheme == 8)
 	{
@@ -80,6 +87,7 @@ void		choose_colors_extra2(int *colors, int *n_colors, int color_scheme)
 	else
 		choose_colors_extra3(colors, n_colors, color_scheme);
 }
+
 void		choose_colors_extra1(int *colors, int *n_colors, int color_scheme)
 {
 	if (color_scheme == 3)
@@ -93,9 +101,8 @@ void		choose_colors_extra1(int *colors, int *n_colors, int color_scheme)
 	{
 		colors[0] = 0x845ec2;
 		colors[1] = 0xd65db1;
-		colors[2] = 0xff9671;
-		colors[3] = 0xffc75f;
-		*n_colors = 4;
+		colors[2] = 0xffc75f;
+		*n_colors = 3;
 	}
 	else if (color_scheme == 5)
 	{

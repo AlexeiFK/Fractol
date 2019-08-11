@@ -1,17 +1,32 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   config.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:58:16 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 20:12:09 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CONFIG_H
 # define CONFIG_H
-
-/* WINDOW CONFIG */ 
+/*
+** WINDOW CONFIG **
+*/
 # define W_NAME "Fractol42"
 # define WINDOW_HEIGTH 800
 # define WINDOW_WIDTH 1000
 # define WINDOW_H_C WINDOW_HEIGTH/2
 # define WINDOW_W_C WINDOW_WIDTH/2
-/* SCREEN_UNITS is a factor to convert real coordinates to pixels on screen*/
+/*
+ ** SCREEN_UNITS is a factor to convert real coordinates to pixels on screen
+*/
 # define SCREEN_UNITS -4
-/* BUFFER is a "frame" of empty pixels around fractal*/
+/*
+ ** BUFFER is a "frame" of empty pixels around fractal
+*/
 # define BUFFER 50
 
 # define FRACTAL_NAME_LIMIT 10
@@ -21,11 +36,15 @@
 # define RANDOM_SCHEME 2048
 # define MAX_COLORS 10
 
-/* special paramets to use smooth coloring*/
+/*
+ ** Special paramets to use smooth coloring
+*/
 # define SMOOTH_ESCAPE 65536
 # define SMOOTH_EXTRA_PAL 25
 
-/* fractals ids*/
+/*
+ ** fractals ids
+*/
 # define JULIA 1
 # define JULIA_MOUSE 8
 # define MULTI_JULIA 9

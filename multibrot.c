@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multibrot.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:10:50 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 19:10:54 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <pthread.h>
 #include "fractol.h"
@@ -10,7 +20,7 @@
 
 static int	to_iterate(long double c_x, long double c_y, int i, t_param *param)
 {
-	long double	x;	
+	long double	x;
 	long double	y;
 
 	x = 0;
@@ -25,11 +35,11 @@ static int	to_iterate(long double c_x, long double c_y, int i, t_param *param)
 	return (i);
 }
 
-static void	check_pixel(t_param *param, long double xd, long double yd) //long double *new_x, long double *new_y)
+static void	check_pixel(t_param *param, long double xd, long double yd)
 {
-	long double	c_x;	
+	long double	c_x;
 	long double	c_y;
-	int		i;
+	int			i;
 
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;
@@ -38,11 +48,11 @@ static void	check_pixel(t_param *param, long double xd, long double yd) //long d
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-void	*trd_func_multibrot(void *p)
+void		*trd_func_multibrot(void *p)
 {
-	int		x;
-	int		y;
-	t_param		*param;
+	int				x;
+	int				y;
+	t_param			*param;
 	t_thread_param	*thread_param;
 
 	thread_param = (t_thread_param*)p;

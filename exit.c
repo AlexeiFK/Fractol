@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:25:43 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 19:25:53 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
@@ -20,7 +31,7 @@ void	usage_msg(void)
 
 void	free_and_exit(t_param *param)
 {
-	free_palette(param->palette, param->pal_size);
+	free_palette(param->palette, param->pres);
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
 	mlx_destroy_image(param->mlx_ptr, param->img_ptr);
 	exit(0);

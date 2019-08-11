@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   smooth.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 18:52:36 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 18:54:30 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <pthread.h>
 #include "fractol.h"
@@ -9,9 +20,9 @@
 
 float	to_iterate_smooth(long double c_x, long double c_y, int i, int i_max)
 {
-	long double	x;	
+	long double	x;
 	long double	y;
-	long double	xx;	
+	long double	xx;
 	long double	yy;
 	long double	xy2;
 
@@ -47,9 +58,10 @@ void	get_smooth_color(float i, float i_max, t_spec *s, t_param *param)
 	s->b = param->palette[temp]->b;
 }
 
-void	check_pixel_smooth(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
+void	check_pixel_smooth(t_param *param,
+		long double xd, long double yd, int i_max)
 {
-	long double	c_x;	
+	long double	c_x;
 	long double	c_y;
 	float		i;
 	t_spec		spec;
@@ -64,10 +76,10 @@ void	check_pixel_smooth(t_param *param, long double xd, long double yd, int i_ma
 
 void	*trd_func_smooth(void *p)
 {
-	int		x;
-	int		y;
-	int		pres;
-	t_param		*param;
+	int				x;
+	int				y;
+	int				pres;
+	t_param			*param;
 	t_thread_param	*thread_param;
 
 	thread_param = (t_thread_param*)p;

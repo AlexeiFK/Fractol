@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:24:16 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 19:24:55 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
@@ -7,8 +17,8 @@
 
 int		main(int argc, char **argv)
 {
-	t_param 	param;
-	int		fractal_num;
+	t_param		param;
+	int			fractal_num;
 	void		*(*f_funcs[N_FRACTAL_LIMIT])(void*);
 
 	if (argc != 2)
@@ -24,6 +34,7 @@ int		main(int argc, char **argv)
 	}
 	else
 		usage_msg();
+	calc_and_refresh(&param);
 	mlx_loop(param.mlx_ptr);
 	return (0);
 }

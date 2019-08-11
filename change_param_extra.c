@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   change_param_extra.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:52:59 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 19:53:49 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <pthread.h>
 #include "fractol.h"
@@ -7,14 +18,14 @@
 #include <stdio.h>
 #include <math.h>
 
-
 void	random_color(t_param *param)
 {
 	param->color_scheme = RANDOM_SCHEME;
 	if (param->current_fractal == MAND_SMOOTH)
 	{
 		free_palette(param->palette, param->pres * SMOOTH_EXTRA_PAL);
-		param->palette = new_palette(param->pres * SMOOTH_EXTRA_PAL, RANDOM_SCHEME);
+		param->palette =
+			new_palette(param->pres * SMOOTH_EXTRA_PAL, RANDOM_SCHEME);
 	}
 	else
 	{
@@ -33,7 +44,8 @@ void	change_color(t_param *param)
 	if (param->current_fractal == MAND_SMOOTH)
 	{
 		free_palette(param->palette, param->pres * SMOOTH_EXTRA_PAL);
-		param->palette = new_palette(param->pres * SMOOTH_EXTRA_PAL, param->color_scheme);
+		param->palette =
+			new_palette(param->pres * SMOOTH_EXTRA_PAL, param->color_scheme);
 	}
 	else
 	{

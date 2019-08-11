@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mand.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/11 19:19:27 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/11 19:22:53 by rjeor-mo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <pthread.h>
 #include "fractol.h"
@@ -7,11 +18,11 @@
 #include <stdio.h>
 #include <math.h>
 
-static int	to_iterate(long double c_x, long double c_y, int i, int i_max)
+static int		to_iterate(long double c_x, long double c_y, int i, int i_max)
 {
-	long double	x;	
+	long double	x;
 	long double	y;
-	long double	xx;	
+	long double	xx;
 	long double	yy;
 	long double	xy2;
 
@@ -31,25 +42,13 @@ static int	to_iterate(long double c_x, long double c_y, int i, int i_max)
 	}
 	return (i);
 }
-/*
-static void	check_pixel_big(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
-{
-	long double	c_x;	
-	long double	c_y;
-	int		i;
 
-	c_x = ((param->start_x) - xd) / param->mult;
-	c_y = (yd - (param->start_y)) / param->mult;
-	i = 0;
-	i = to_iterate(c_x, c_y, i, i_max);
-	ch_pixel_put(param, xd, yd, param->palette[i]);
-}
-*/
-static void	check_pixel(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
+static void		check_pixel(t_param *param,
+		long double xd, long double yd, int i_max)
 {
-	long double	c_x;	
+	long double	c_x;
 	long double	c_y;
-	int		i;
+	int			i;
 
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;
@@ -58,12 +57,12 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	ch_pixel_put(param, xd, yd, param->palette[i]);
 }
 
-void	*trd_func_mand(void *p)
+void			*trd_func_mand(void *p)
 {
-	int		x;
-	int		y;
-	int		pres;
-	t_param		*param;
+	int				x;
+	int				y;
+	int				pres;
+	t_param			*param;
 	t_thread_param	*thread_param;
 
 	thread_param = (t_thread_param*)p;
@@ -83,17 +82,17 @@ void	*trd_func_mand(void *p)
 	return (NULL);
 }
 
-void	*trd_func_cmand(void *p)
+void			*trd_func_cmand(void *p)
 {
-	int		x;
-	int		y;
-	int		y_start;
-	t_param		*param;
+	int				x;
+	int				y;
+	int				y_start;
+	t_param			*param;
 	t_thread_param	*thread_param;
 
 	thread_param = (t_thread_param*)p;
 	param = (t_param*)(thread_param->p);
-	x = thread_param->pixel_start;// * 2;
+	x = thread_param->pixel_start;
 	if (x % 2 == 0)
 		y_start = 0;
 	else
