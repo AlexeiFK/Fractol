@@ -68,7 +68,6 @@ void	chess_scale(t_param *param)
 {
 	int	x;
 	int	y;
-	int	y_start;
 
 	x = 0;
 	while (x < WINDOW_WIDTH)

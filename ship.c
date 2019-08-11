@@ -41,7 +41,6 @@ static void	check_pixel(t_param *param, long double xd, long double yd, int i_ma
 	long double	c_x;	
 	long double	c_y;
 	int		i;
-	t_spec		spec;
 
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;

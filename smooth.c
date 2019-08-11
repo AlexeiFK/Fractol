@@ -37,11 +37,7 @@ float	to_iterate_smooth(long double c_x, long double c_y, int i, int i_max)
 
 void	get_smooth_color(float i, float i_max, t_spec *s, t_param *param)
 {
-	int	i_up;
-	int	i_down;
 	int	temp;
-	t_spec	*up;
-	t_spec	*down;
 
 	temp = floor(i * SMOOTH_EXTRA_PAL);
 	if (temp < 0 || temp > (i_max * SMOOTH_EXTRA_PAL))

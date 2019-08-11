@@ -53,16 +53,26 @@ int		keyboard_fj(int keycode, void *param);
 int		hook_f(void *param);
 int		mouse_move_f(int x, int y, void *param);
 
+void		usage_msg(void);
+void		free_and_exit(t_param *param);
+
+void		mlx_setup(t_param *param, int fractal);
+void		get_funcs(void *(**f_funcs)(void*));
+void		set_controls(int fractal_num, t_param *param);
+int		get_fractal_number(char *name);
+
 void		change_color(t_param *param);
 void		change_color_j(t_param *param);
 void		shift_set(t_param *param, long double x, long double y);
+void		shift_setj(t_param *param, long double x, long double y);
+void		shift_julia_param(t_param *param, long double x, long double y);
 void		change_pres(t_param *param, int pres);
-void		print(t_param *param, long double mult, long double x, long double y);
+void		zoom_mand(t_param *param, long double mult, long double x, long double y);
 void		print_j(t_param *param, long double mult, long double x, long double y);
 void		create_j(t_param *param, long double mult, long double x, long double y);
 void		change_pres_j(t_param *param, int pres);
 void		change_n(t_param *param, int n);
-void		x_y_convert(t_param *param, long double x, long double y); //long double *new_x, long double *new_y)
+void		x_y_convert(t_param *param, long double x, long double y);
 void		choose_color(t_spec *to_color, int color_scheme, int size, int i);
 void		choose_colors(int *colors, int *n_colors, int scheme_number);
 t_spec		**new_palette(int size, int color_scheme);

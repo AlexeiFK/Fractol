@@ -6,13 +6,13 @@
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
-
+/*
 void	check_pixel_big(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
 {
-	long double	c_x;	
-	long double	c_y;
+//	long double	c_x;	
+//	long double	c_y;
 	int		i;
-	t_spec		spec;
+//	t_spec		spec;
 
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;
@@ -22,9 +22,9 @@ void	check_pixel_big(t_param *param, long double xd, long double yd, int i_max) 
 //	ch_pixel_put(param, xd + 1, yd, param->palette[i]);
 //	ch_pixel_put(param, xd, yd + 1, param->palette[i]);
 //	ch_pixel_put(param, xd + 1, yd + 1, param->palette[i]);
-}
+}*/
 
-
+/*
 void	*trd_func_big(void *p)
 {
 	int		x;
@@ -78,3 +78,4 @@ void	*trd_func_chess(void *p)
 	}
 	return (NULL);
 }
+*/

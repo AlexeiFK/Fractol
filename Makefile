@@ -3,7 +3,8 @@ NAME = fractol
 
 #FLAGS = -Wall -Wextra -Werror
 
-FLAGS = -O2
+#FLAGS = -Ofast -mtune=native -march=native -mfpmath=sse -funroll-loops -funroll-all-loops -ffast-math -fforce-addr
+FLAGS = -march=native -Ofast -pipe -Wall -Wextra -Werror
 
 LIBFT = -L libft/ -lft
 
@@ -11,7 +12,8 @@ MINILIB = -L minilibx_macos/ -lmlx
 
 #FRAMEW = -framework OpenGL -framework Appkit
 
-CFILES = main.c controls.c print.c julia.c m_treads.c palette.c color_scheme.c ship.c tricorn.c multibrot.c multijulia.c
+CFILES = main.c controls.c print.c julia.c palette.c color_scheme.c ship.c tricorn.c multibrot.c multijulia.c \
+	 change_param.c change_param_extra.c misc.c mand.c smooth.c upscale.c exit.c setup.c
 
 OBJ = $(CFILES:%.c=%.o)
 

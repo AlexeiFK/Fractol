@@ -19,7 +19,6 @@ static int	to_iterate(long double c_x, long double c_y, int i, int i_max)
 	y = 0;
 	xx = 0;
 	yy = 0;
-	xy2 = 0;
 	while (i < i_max && ((xx + yy) <= 4.0))
 	{
 		xx = x * x;
@@ -32,29 +31,25 @@ static int	to_iterate(long double c_x, long double c_y, int i, int i_max)
 	}
 	return (i);
 }
-
+/*
 static void	check_pixel_big(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
 {
 	long double	c_x;	
 	long double	c_y;
 	int		i;
-	t_spec		spec;
 
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;
 	i = 0;
 	i = to_iterate(c_x, c_y, i, i_max);
 	ch_pixel_put(param, xd, yd, param->palette[i]);
-//	ch_pixel_put(param, xd + 1, yd, param->palette[i]);
-//	ch_pixel_put(param, xd, yd + 1, param->palette[i]);
-//	ch_pixel_put(param, xd + 1, yd + 1, param->palette[i]);
 }
+*/
 static void	check_pixel(t_param *param, long double xd, long double yd, int i_max) //long double *new_x, long double *new_y)
 {
 	long double	c_x;	
 	long double	c_y;
 	int		i;
-	t_spec		spec;
 
 	c_x = ((param->start_x) - xd) / param->mult;
 	c_y = (yd - (param->start_y)) / param->mult;
@@ -93,7 +88,6 @@ void	*trd_func_cmand(void *p)
 	int		x;
 	int		y;
 	int		y_start;
-	int		pres;
 	t_param		*param;
 	t_thread_param	*thread_param;
 
@@ -109,7 +103,7 @@ void	*trd_func_cmand(void *p)
 		y = y_start;
 		while (y < WINDOW_HEIGTH)
 		{
-			check_pixel_big(param, x, y, param->pres);
+			check_pixel(param, x, y, param->pres);
 			y += 2;
 		}
 		x += (THREADS_NUM);
