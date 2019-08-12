@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:58:16 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 20:12:09 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 20:22:33 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@
 # define SENS_VERT 20
 # define SENS_PRES 20
 # define SENS_ZOOM_IN 1.1
-# define SENS_ZOOM_OUT 0.9
+# define SENS_ZOOM_OUT 1/1.1
 # define MAX_ZOOM 430
-# define MIN_ZOOM -20
+# define MIN_ZOOM -10
 
 #endif
