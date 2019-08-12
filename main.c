@@ -6,14 +6,13 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:24:16 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:24:55 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:14:57 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
 #include "fractol.h"
 #include "mlx.h"
+#include "config.h"
 
 int		main(int argc, char **argv)
 {

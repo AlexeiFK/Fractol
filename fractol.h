@@ -6,15 +6,12 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 20:03:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 20:10:01 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:03:34 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-
-# include "config.h"
-# include "keys.h"
 
 typedef struct		s_spec
 {

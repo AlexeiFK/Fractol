@@ -6,14 +6,13 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:11:31 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:12:09 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:20:26 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "mlx.h"
-#include <stdio.h>
-#include <pthread.h>
+#include "config.h"
+#include <stdlib.h>
 
 static int	to_iterate(long double s_x, long double s_y, int i, t_param *p)
 {

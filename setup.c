@@ -6,14 +6,14 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 18:55:03 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 18:59:38 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:28:01 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 #include "fractol.h"
 #include "mlx.h"
+#include "config.h"
 
 static int	min_mult(int width, int height)
 {

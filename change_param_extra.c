@@ -6,17 +6,12 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:52:59 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:53:49 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:05:11 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
-#include "mlx.h"
 #include "config.h"
-#include "libft.h"
-#include <stdio.h>
-#include <math.h>
 
 void	random_color(t_param *param)
 {

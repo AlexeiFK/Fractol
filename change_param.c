@@ -6,17 +6,12 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:56:15 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:57:27 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:04:47 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
-#include "mlx.h"
 #include "config.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <math.h>
 
 void	change_pres(t_param *param, int pres)
 {

@@ -6,17 +6,13 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 16:29:16 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:31:22 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:10:40 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "fractol.h"
 #include "config.h"
 #include "keys.h"
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 void	keyboard_extra(int keycode, void *param)
 {

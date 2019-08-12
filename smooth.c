@@ -6,16 +6,13 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 18:52:36 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 18:54:30 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:30:42 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
-#include "mlx.h"
 #include "config.h"
-#include "libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 float	to_iterate_smooth(long double c_x, long double c_y, int i, int i_max)

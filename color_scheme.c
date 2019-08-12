@@ -6,15 +6,11 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:32:17 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:43:20 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:07:47 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
 #include "config.h"
-#include "libft.h"
-#include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
 #include <time.h>
 #include "colors.h"

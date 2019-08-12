@@ -6,19 +6,13 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:02:36 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:09:27 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:23:31 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
-#include "mlx.h"
 #include "config.h"
-#include "libft.h"
-#include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
-#include <time.h>
 
 void		fill_up(t_spec **pal, int start, int size_to_fill, int *colors)
 {

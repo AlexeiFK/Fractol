@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:12:33 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:23:53 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:18:35 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 #include "mlx.h"
 #include "config.h"
 #include "libft.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 void		c_power(long double *x_o, long double *y_o, int power)
 {

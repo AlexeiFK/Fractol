@@ -6,17 +6,12 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 18:46:40 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 18:48:53 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/12 21:31:21 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
-#include "mlx.h"
 #include "config.h"
-#include "libft.h"
-#include <stdio.h>
-#include <math.h>
 
 void	biliner_put_4dots(t_param *param, int x, int y)
 {
