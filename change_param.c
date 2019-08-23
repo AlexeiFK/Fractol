@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:56:15 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:04:47 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 04:24:28 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	change_pres(t_param *param, int pres)
 		free_palette(param->palette, param->pres * SMOOTH_EXTRA_PAL);
 	else
 		free_palette(param->palette, param->pres);
-	param->pres += pres;
+	if ((param->pres + pres) > 0)
+		param->pres += pres;
 	if (param->current_fractal == MAND_SMOOTH)
 		param->palette =
 			new_palette(param->pres * SMOOTH_EXTRA_PAL, param->color_scheme);

@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:25:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:11:55 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 04:18:05 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,22 @@
 #include "mlx.h"
 #include "fractol.h"
 
-void	usage_msg(void)
+static void	controls_msg(void)
+{
+	ft_putstr("Arrows - Shift\n");
+	ft_putstr("Mouse wheel - zoom\n");
+	ft_putstr("Z - increase precision\n");
+	ft_putstr("X - dicrease precision\n");
+	ft_putstr("E - change color\n");
+	ft_putstr("R - random color\n");
+	ft_putstr("Q - increase power in multifractals\n");
+	ft_putstr("W - dicrease power in multifractals\n");
+	ft_putstr("A - turn on mouse julia changing\n");
+	ft_putstr("S - turn off mouse julia changing\n");
+	ft_putstr("TFGH - change julia param\n");
+	ft_putstr("Esc - exit\n");
+}
+void		usage_msg(void)
 {
 	ft_putstr("usage: ./fractol [fractal_name]\n");
 	ft_putstr("fractal names:\n");
@@ -26,10 +41,12 @@ void	usage_msg(void)
 	ft_putstr("MultiB = Multibrot sets\n");
 	ft_putstr("MandSm = Mandelbrot set smooth color\n");
 	ft_putstr("MultiJ = MultiJulia sets\n");
+	ft_putstr("-----------------------------\n");
+	controls_msg();
 	exit(0);
 }
 
-void	free_and_exit(t_param *param)
+void		free_and_exit(t_param *param)
 {
 	free_palette(param->palette, param->pres);
 	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
