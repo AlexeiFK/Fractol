@@ -1,66 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   misc.c                                             :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/11 19:12:33 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/23 04:34:12 by rjeor-mo         ###   ########.fr       */
+/*   Created: 2019/08/23 05:09:10 by rjeor-mo          #+#    #+#             */
+/*   Updated: 2019/08/23 05:10:28 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include "fractol.h"
 #include "mlx.h"
 #include "config.h"
 #include "libft.h"
 #include <stdlib.h>
-
-void		c_power(long double *x_o, long double *y_o, int power)
-{
-	long double	x;
-	long double	y;
-	long double	xx;
-	long double	yy;
-	int			j;
-
-	x = *x_o;
-	y = *y_o;
-	j = 1;
-	while (j < power)
-	{
-		xx = x * *x_o;
-		yy = y * *y_o;
-		y = x * *y_o + *x_o * y;
-		x = xx - yy;
-		j++;
-	}
-	*x_o = x;
-	*y_o = y;
-}
-
-void		trd_starter(t_param *param, void *(*func)(void*))
-{
-	pthread_t		t[THREADS_NUM];
-	t_thread_param	p[THREADS_NUM];
-	int				i;
-
-	i = 0;
-	while (i < THREADS_NUM)
-	{
-		p[i].pixel_start = i;
-		p[i].p = param;
-		pthread_create(&t[i], NULL, func, &p[i]);
-		i++;
-	}
-	i = 0;
-	while (i < THREADS_NUM)
-	{
-		pthread_join(t[i], NULL);
-		i++;
-	}
-}
 
 void		ch_pixel_put(t_param *param, int x, int y, t_spec *c)
 {
