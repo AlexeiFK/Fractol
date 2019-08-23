@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 20:03:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:03:34 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 04:56:33 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void				c_power(long double *x_o, long double *y_o, int power);
 void				ch_pixel_put(t_param *param, int x, int y, t_spec *c);
 
 void				get_spec(t_spec *s, unsigned int color);
+unsigned int		get_hex(t_spec *s);
 void				get_color_inc(int n_pixels,
 					unsigned int color1, unsigned int color2, t_spec *inc);
 void				inc_st_color(t_spec *c, t_spec *inc);

@@ -6,20 +6,37 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:05:30 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 19:55:57 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 04:58:47 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		get_spec(t_spec *s, unsigned int color)
+unsigned int	get_hex(t_spec *s)
+{
+	unsigned int	color;
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
+
+	color = 0;
+	r = s->r;
+	g = s->g;
+	b = s->b;
+	r = r << 16;
+	g = g << 8;
+	color = r | g | b;
+	return (color);
+}
+
+void			get_spec(t_spec *s, unsigned int color)
 {
 	s->r = (color & 0xff0000) >> 16;
 	s->g = (color & 0x00ff00) >> 8;
 	s->b = (color & 0x0000ff);
 }
 
-void		get_color_inc(int n_pixels,
+void			get_color_inc(int n_pixels,
 		unsigned int color1, unsigned int color2, t_spec *inc)
 {
 	t_spec	s1;
@@ -36,7 +53,7 @@ void		get_color_inc(int n_pixels,
 	inc->b = ((s2.b - s1.b) / n_pixels);
 }
 
-void		inc_st_color(t_spec *c, t_spec *inc)
+void			inc_st_color(t_spec *c, t_spec *inc)
 {
 	c->r += inc->r;
 	c->g += inc->g;

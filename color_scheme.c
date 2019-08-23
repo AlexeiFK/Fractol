@@ -6,10 +6,11 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:32:17 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:07:47 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 05:00:49 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
 #include "config.h"
 #include <stdlib.h>
 #include <time.h>
@@ -18,13 +19,17 @@
 void		choose_random_color(int *colors, int *n_colors)
 {
 	int		i;
+	t_spec	s;
 
 	i = 0;
 	srand(time(NULL));
 	*n_colors = rand() % (MAX_COLORS - 2) + 2;
 	while (i < *n_colors)
 	{
-		colors[i] = (rand() % 256) * (rand() % 256) * (rand() % 256);
+		s.r = rand() % 256;
+		s.g = rand() % 256;
+		s.b = rand() % 256;
+		colors[i] = get_hex(&s);
 		i++;
 	}
 }

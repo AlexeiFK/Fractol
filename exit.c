@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:25:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/23 04:29:04 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 05:01:10 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	controls_msg(void)
 	ft_putstr("TFGH - change julia param\n");
 	ft_putstr("Esc - exit\n");
 }
+
 void		usage_msg(void)
 {
 	ft_putstr("usage: ./fractol [fractal_name]\n");
