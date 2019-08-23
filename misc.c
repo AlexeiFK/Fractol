@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:12:33 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:18:35 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 04:34:12 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,11 @@ void		put_info(t_param *param)
 	char	*pres_info;
 
 	pres_info = ft_itoa(param->pres);
-	mlx_string_put(param->mlx_ptr, param->win_ptr,
+	if (param->color_scheme == 0)
+		mlx_string_put(param->mlx_ptr, param->win_ptr,
+			BUFFER, BUFFER, 0x808080, pres_info);
+	else
+		mlx_string_put(param->mlx_ptr, param->win_ptr,
 			BUFFER, BUFFER, 0xffffff, pres_info);
 	free(pres_info);
 }

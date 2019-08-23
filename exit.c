@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:25:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/23 04:18:05 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/23 04:29:04 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		usage_msg(void)
 	ft_putstr("Tricorn = Tricorn set\n");
 	ft_putstr("MultiB = Multibrot sets\n");
 	ft_putstr("MandSm = Mandelbrot set smooth color\n");
+	ft_putstr("MandC = Mandelbrot set with chess opt\n");
 	ft_putstr("MultiJ = MultiJulia sets\n");
 	ft_putstr("-----------------------------\n");
 	controls_msg();
