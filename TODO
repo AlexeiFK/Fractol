@@ -4,6 +4,11 @@ fractol -> fdf
 long zoom
 fdf: close
 errors maloc trd
+norminate
+unused includes
+unused headers
+malloc errors (fractal and fdf)
+leaks
 ---------------------------------
 bonus sheet
 chess for every fractal
