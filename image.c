@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 05:09:10 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/23 05:10:28 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 11:47:46 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		put_info(t_param *param)
 void		calc_and_refresh(t_param *param)
 {
 	trd_starter(param, param->fractal_func);
-	if (param->current_fractal == MAND_CHESS)
+	if (param->is_chess == 1)
 		chess_scale(param);
 	mlx_put_image_to_window(param->mlx_ptr,
 			param->win_ptr, param->img_ptr, 0, 0);

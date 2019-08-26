@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:44:12 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:14:13 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 09:52:27 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,30 @@ void			*trd_func_julia(void *p)
 	return (NULL);
 }
 
-void			create_j(t_param *param,
-		long double mult, long double x, long double y)
+void			*trd_func_cjulia(void *p)
 {
-	param->mult = param->mult * mult;
-	param->julia_x = ((param->start_x) - x) / param->mult;
-	param->julia_y = (y - (param->start_y)) / param->mult;
-}
+	int				x;
+	int				y;
+	int				y_start;
+	t_param			*param;
+	t_thread_param	*thread_param;
 
-void			print_j(t_param *param,
-		long double mult, long double x, long double y)
-{
-	long double		res1;
-	long double		res2;
-
-	res1 = (param->j_start_x - x) * mult;
-	res2 = (param->j_start_y - y) * mult;
-	param->j_start_x = x + res1;
-	param->j_start_y = y + res2;
-	param->j_mult = param->j_mult * mult;
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
+	x = thread_param->pixel_start;
+	if (x % 2 == 0)
+		y_start = 0;
+	else
+		y_start = 1;
+	while (x < WINDOW_WIDTH)
+	{
+		y = y_start;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel(param, x, y);
+			y += 2;
+		}
+		x += (THREADS_NUM);
+	}
+	return (NULL);
 }

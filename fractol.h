@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 20:03:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/23 04:56:33 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 11:06:50 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,28 @@ typedef struct		s_param
 	void			*win_ptr;
 	void			*img_ptr;
 	void			*menu_ptr;
+
 	unsigned char	*s;
 	int				size;
+
 	long double		start_x;
 	long double		start_y;
 	long double		mult;
-	int				color_scheme;
 	int				pres;
+	int				n;
+
 	long double		julia_x;
 	long double		julia_y;
 	long double		j_start_x;
 	long double		j_start_y;
 	long double		j_mult;
-	int				current_fractal;
+
+	int				color_scheme;
 	t_spec			**palette;
 	int				pal_size;
-	int				n;
+
+	int				current_fractal;
+	char			is_chess;
 	void			*(*fractal_func)(void*);
 }					t_param;
 
@@ -92,13 +98,19 @@ void				random_color_j(t_param *param);
 
 void				trd_starter(t_param *param, void *(*func)(void*));
 void				*trd_func_mand(void *p);
-void				*trd_func_cmand(void *p);
 void				*trd_func_julia(void *p);
 void				*trd_func_ship(void *p);
 void				*trd_func_tricorn(void *p);
 void				*trd_func_smooth(void *p);
 void				*trd_func_multibrot(void *p);
 void				*trd_func_multijulia(void *p);
+void				*trd_func_cmand(void *p);
+void				*trd_func_cship(void *p);
+void				*trd_func_cjulia(void *p);
+void				*trd_func_cship(void *p);
+void				*trd_func_ctricorn(void *p);
+void				*trd_func_cmultibrot(void *p);
+void				*trd_func_cmultijulia(void *p);
 void				calc_and_refresh(t_param *param);
 
 void				chess_scale(t_param *param);

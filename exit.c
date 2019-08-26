@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:25:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/23 05:01:10 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 11:40:25 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ void		usage_msg(void)
 {
 	ft_putstr("usage: ./fractol [fractal_name]\n");
 	ft_putstr("fractal names:\n");
-	ft_putstr("Mand = Mandelbrot set\n");
-	ft_putstr("Julia = Julia set\n");
-	ft_putstr("Bsf = Burning Ship Fractal\n");
-	ft_putstr("Tricorn = Tricorn set\n");
-	ft_putstr("MultiB = Multibrot sets\n");
+	ft_putstr("Mand = Mandelbrot set, add C for chess opt\n");
+	ft_putstr("Julia = Julia set, add C for chess opt\n");
+	ft_putstr("Bsf = Burning Ship Fractal, add C for chess opt\n");
+	ft_putstr("Tricorn = Tricorn set, add C for chess opt\n");
+	ft_putstr("MultiB = Multibrot sets, add C for chess opt\n");
+	ft_putstr("MultiJ = MultiJulia sets, add C for chess opt\n");
 	ft_putstr("MandSm = Mandelbrot set smooth color\n");
-	ft_putstr("MandC = Mandelbrot set with chess opt\n");
-	ft_putstr("MultiJ = MultiJulia sets\n");
 	ft_putstr("-----------------------------\n");
 	controls_msg();
 	exit(0);

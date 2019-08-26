@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:10:50 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:20:01 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 09:50:23 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,34 @@ void		*trd_func_multibrot(void *p)
 			y += 1;
 		}
 		x += THREADS_NUM;
+	}
+	return (NULL);
+}
+
+void			*trd_func_cmultibrot(void *p)
+{
+	int				x;
+	int				y;
+	int				y_start;
+	t_param			*param;
+	t_thread_param	*thread_param;
+
+	thread_param = (t_thread_param*)p;
+	param = (t_param*)(thread_param->p);
+	x = thread_param->pixel_start;
+	if (x % 2 == 0)
+		y_start = 0;
+	else
+		y_start = 1;
+	while (x < WINDOW_WIDTH)
+	{
+		y = y_start;
+		while (y < WINDOW_HEIGTH)
+		{
+			check_pixel(param, x, y);
+			y += 2;
+		}
+		x += (THREADS_NUM);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:58:16 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/26 09:20:25 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 11:32:25 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 */
 # define BUFFER 50
 
-# define FRACTAL_NAME_LIMIT 10
-# define N_FRACTAL_LIMIT 10
+# define FRACTAL_NAME_LIMIT 13
+# define N_FRACTAL_LIMIT 13
 
 # define COLOR_SCHEME_MAX 12
 # define RANDOM_SCHEME 2048
@@ -45,9 +45,9 @@
 /*
  ** fractals ids
 */
-# define JULIA 1
-# define JULIA_MOUSE 8
-# define MULTI_JULIA 9
+# define JULIA 9
+# define JULIA_MOUSE 15
+# define MULTI_JULIA 10
 # define MAND 0
 # define MAND_SMOOTH 4
 # define MAND_CHESS 7
