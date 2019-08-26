@@ -1,0 +1,9 @@
+Zoom follow mouse position
+Moving with arrows
+Color shift pallete
+Multi-threding
+Mand Julia Bsf Tricorn MultiB MultiJ
++++++++++++++++++++++++++++++++++
+Random colors
+Smooth coloring
+Changeable precision
