@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 16:29:16 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:10:40 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 13:20:34 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 void	keyboard_extra(int keycode, void *param)
 {
+	if (keycode == PKEY)
+		ft_reader(param);
 	if (keycode == TKEY)
 		shift_julia_param(param, 0, SENS_J);
 	if (keycode == FKEY)

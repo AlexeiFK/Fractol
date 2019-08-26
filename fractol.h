@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 20:03:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/26 11:06:50 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 13:02:38 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct		s_param
 
 	int				color_scheme;
 	t_spec			**palette;
-	int				pal_size;
 
 	int				current_fractal;
 	char			is_chess;
@@ -122,5 +121,7 @@ unsigned int		get_hex(t_spec *s);
 void				get_color_inc(int n_pixels,
 					unsigned int color1, unsigned int color2, t_spec *inc);
 void				inc_st_color(t_spec *c, t_spec *inc);
+
+void				ft_reader(t_param *param);
 
 #endif

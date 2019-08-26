@@ -7,3 +7,4 @@ Mand Julia Bsf Tricorn MultiB MultiJ
 Random colors
 Smooth coloring
 Changeable precision
+Chess optimization

@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 16:30:17 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/12 21:11:12 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 13:20:31 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 int		keyboard_f(int keycode, void *param)
 {
+	if (keycode == PKEY)
+		ft_reader(param);
 	if (keycode == EKEY)
 		change_color(param);
 	if (keycode == RKEY)

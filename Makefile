@@ -15,7 +15,7 @@ FRAMEW = -framework OpenGL -framework Appkit
 CFILES = main.c controls_mand.c controls_julia.c \
 		 julia.c palette.c color_scheme.c ship.c tricorn.c multibrot.c multijulia.c \
 		 change_param.c change_param_julia.c change_param_extra.c c_power.c mand.c smooth.c upscale.c exit.c setup.c \
-		 color_funcs.c trd_start.c image.c
+		 color_funcs.c trd_start.c image.c fractal_to_fdf.c
 
 OBJ = $(CFILES:%.c=%.o)
 

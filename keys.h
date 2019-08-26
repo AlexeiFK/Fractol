@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 20:01:42 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/11 20:01:44 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 13:20:26 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define VKEY 9
 # define BKEY 11
 # define CKEY 8
+# define PKEY 35
 # define ARROW_U 126
 # define ARROW_D 125
 # define ARROW_R 124

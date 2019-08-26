@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 05:09:10 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/26 11:47:46 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/08/26 12:35:29 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void		ch_pixel_put(t_param *param, int x, int y, t_spec *c)
+void	ch_pixel_put(t_param *param, int x, int y, t_spec *c)
 {
 	unsigned char	*s;
+	int				xm;
 
+	xm = x << 2;
 	s = param->s;
 	s += (param->size * y);
-	s[x * 4] = c->b;
-	s[x * 4 + 1] = c->g;
-	s[x * 4 + 2] = c->r;
+	s[xm] = c->b;
+	s[xm + 1] = c->g;
+	s[xm + 2] = c->r;
 }
 
 void		put_info(t_param *param)
