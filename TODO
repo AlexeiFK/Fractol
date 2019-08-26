@@ -1,4 +1,6 @@
 fractol -> fdf
+	add color
+	rewrite file
 long zoom
 fdf: close
 errors maloc trd
