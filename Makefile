@@ -1,39 +1,64 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/10/24 22:32:32 by rjeor-mo          #+#    #+#              #
+#    Updated: 2019/10/24 22:33:06 by rjeor-mo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = fractol
+NAME=fractol
 
-#FLAGS = -Wall -Wextra -Werror
+VPATH=./
 
-#FLAGS = -Ofast -mtune=native -march=native -mfpmath=sse -funroll-loops -funroll-all-loops -ffast-math -fforce-addr
-FLAGS = -march=native -O3 -Wall -Wextra -Werror
+CC=gcc
 
-LIBFT = -L libft/ -lft
+LIBFT= -L libft/ -lftprintf
+
+IDIR=./libft
 
 MINILIB = -L minilibx_macos/ -lmlx
 
 FRAMEW = -framework OpenGL -framework Appkit
 
-CFILES = main.c controls_mand.c controls_julia.c \
-		 julia.c palette.c color_scheme.c ship.c tricorn.c multibrot.c multijulia.c \
-		 change_param.c change_param_julia.c change_param_extra.c c_power.c mand.c smooth.c upscale.c exit.c setup.c \
-		 color_funcs.c trd_start.c image.c fractal_to_fdf.c
+INCLUDES= -I$(IDIR) -Iminilibx_macos/include 
 
-OBJ = $(CFILES:%.c=%.o)
+HEADERS= fractol.h config.h keys.h
+
+SRC= main.c controls_mand.c controls_julia.c \
+	 julia.c palette.c color_scheme.c \
+	 ship.c tricorn.c multibrot.c multijulia.c \
+	 change_param.c change_param_julia.c change_param_extra.c c_power.c \
+	 mand.c smooth.c upscale.c exit.c setup.c \
+	 color_funcs.c trd_start.c image.c fractal_to_fdf.c
+
+CFLAGS= -Wall -Wextra -Werror $(INCLUDES) -O3 -march=native
+
+RM= rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ) fractol.h config.h keys.h colors.h
-	make -C libft
-	gcc $(FLAGS) $(OBJ) -o $(NAME) -lm -Iminilibx/include  $(LIBFT) $(MINILIB) $(FRAMEW) -lpthread
+OBJ=$(SRC:.c=.o)
 
-$(OBJ): $(CFILES) fractol.h config.h keys.h colors.h
-	gcc $(FLAGS) -c $(CFILES) -Ilibft -Iminilibx_macos
+$(NAME): $(OBJ) $(HEADERS)
+	make -C libft
+	make -C minilibx_macos
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(FRAMEW) $(MINILIB) -lpthread 
+	@echo "Fractol ready."
+
+%.o: %.c $(HEADERS)
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
+	$(RM) $(OBJ)
 	make clean -C libft
-	rm -f $(OBJ)
+	make clean -C minilibx_macos
 
 fclean: clean
-	make fclean -C libft
-	rm -f $(NAME)
+	$(RM) $(NAME)
+	make -C libft fclean
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:25:43 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/26 11:40:25 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:40:45 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	controls_msg(void)
 	ft_putstr("W - dicrease power in multifractals\n");
 	ft_putstr("A - turn on mouse julia changing\n");
 	ft_putstr("S - turn off mouse julia changing\n");
+	ft_putstr("P - write to fdf.fdf file\n");
 	ft_putstr("TFGH - change julia param\n");
 	ft_putstr("Esc - exit\n");
 }

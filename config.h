@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 19:58:16 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/08/26 13:27:43 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/09/11 20:23:07 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 ** WINDOW CONFIG **
 */
 # define W_NAME "Fractol42"
-# define WINDOW_HEIGTH 200
-# define WINDOW_WIDTH 300
+# define WINDOW_HEIGTH 600
+# define WINDOW_WIDTH 800
 # define WINDOW_H_C WINDOW_HEIGTH/2
 # define WINDOW_W_C WINDOW_WIDTH/2
 /*
